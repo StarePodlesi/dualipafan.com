@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dua Lipa — Fan Page</title>
-<link rel="icon" href="Dua_Lipa.jpg" type="image/x-icon">
+<link rel="icon" href="images/Dua_Lipa.jpg" type="image/x-icon">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Poppins',sans-serif;background:#070809;color:#fff;overflow-x:hidden;}
@@ -13,7 +13,7 @@ header img{width:260px;border-radius:50%;border:4px solid #fff;box-shadow:0 0 35
 header h1{font-size:3rem;margin-top:25px;color:#fff;letter-spacing:1px;}
 header p{max-width:800px;margin:25px auto 0;font-size:1.1rem;line-height:1.7;color:#ccc;text-align:justify;}
 .albums{display:flex;flex-wrap:wrap;justify-content:center;gap:50px;padding:50px 20px;background:#141820;}
-.album{width:330px;background:#1e2430;border-radius:16px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,0.3);transition:transform .3s,box-shadow .3s;}
+.album{width:330px;background:#1e2430;border-radius:16px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,0.3);transition:transform .3s,box-shadow .3s;cursor:pointer;}
 .album:hover{transform:translateY(-8px);box-shadow:0 12px 30px rgba(0,0,0,0.5);}
 .album img{width:100%;display:block;}
 .album .info{padding:22px;text-align:center;}
@@ -47,33 +47,33 @@ header p{max-width:800px;margin:25px auto 0;font-size:1.1rem;line-height:1.7;col
 .progress-wrap{width:100%;margin-top:12px;}
 .progress-bar{width:100%;height:12px;background:rgba(255,255,255,0.07);border-radius:10px;overflow:hidden;cursor:pointer;}
 .progress-fill{height:100%;width:0;background:#40E0D0;border-radius:10px;transition:width .06s linear;}
+video{width:100%;border-radius:12px;margin-top:12px;}
 @media (max-width:720px){header h1{font-size:2.2rem}.album{width:90%}}
-/* fade animation */
 .fade-in{animation:fadeIn .35s ease both}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <header>
-<img src="Dua_Lipa.jpg" alt="Dua Lipa">
+<img src="images/Dua_Lipa.jpg" alt="Dua Lipa">
 <h1>Dua Lipa</h1>
-<p>Dua Lipa je britská zpěvačka, skladatelka a modelka albánského původu, jedna z nejvýraznějších popových osobností současnosti. Její hudba kombinuje pop, disco, funk a elektroniku, texty se věnují sebevědomí, nezávislosti a ženské síle. Tady najdeš kompletní tracklisty dvou významných projektů z poslední doby: <strong>Radical Optimism (2024)</strong> a <strong>Live from the Royal Albert Hall (2024)</strong>.</p>
+<p>Dua Lipa je britská zpěvačka, skladatelka a modelka albánského původu. Její hudba kombinuje pop, disco, funk a elektroniku. Tento fanpage obsahuje kompletní tracklisty a videa k albům <strong>Radical Optimism (2024)</strong> a <strong>Live from the Royal Albert Hall (2024)</strong>.</p>
 </header>
 
 <section class="albums">
 <div class="album" onclick="openAlbum('radical')">
-<img src="Radical_Optimism_Cover.jpg" alt="Radical Optimism">
+<img src="images/Radical_Optimism_Cover.jpg" alt="Radical Optimism">
 <div class="info">
 <h2>Radical Optimism</h2>
-<p>Třetí studiové album Dua Lipy vydané 3. května 2024. Moderní retro-disco s mořskou symbolikou, texty o osobním růstu a sebevědomí.</p>
+<p>Třetí studiové album Dua Lipy vydané 3. května 2024. Moderní retro-disco s mořskou symbolikou a texty o osobním růstu a sebevědomí.</p>
 </div>
 </div>
 
 <div class="album" onclick="openAlbum('live')">
-<img src="Live_from_the_Royal_Albert_Hall.jfif" alt="Live from the Royal Albert Hall">
+<img src="images/Live_from_the_Royal_Albert_Hall.jpg" alt="Live from the Royal Albert Hall">
 <div class="info">
 <h2>Live from the Royal Albert Hall</h2>
-<p>Živé album nahrané 27. října 2024 — koncertní záznam s autentickou atmosférou, živou kapelou a orchestry.</p>
+<p>Živé album nahrané 27. října 2024 s autentickou atmosférou, živou kapelou a orchestry. Obsahuje všechny hity z Radical Optimism a dalších alb.</p>
 </div>
 </div>
 </section>
@@ -82,11 +82,11 @@ header p{max-width:800px;margin:25px auto 0;font-size:1.1rem;line-height:1.7;col
 <section id="page-radical" class="album-page">
 <button class="back" onclick="closeAlbum()">← Zpět</button>
 <div class="album-header">
-<img src="radical-optimism.jpg" alt="Radical Optimism">
+<img src="images/Radical_Optimism_Cover.jpg" alt="Radical Optimism">
 <div>
 <h2>Radical Optimism (2024)</h2>
 <div class="album-desc">
-<p>Radical Optimism je třetí studiové album Dua Lipy vydané 3. května 2024. Projekt navazuje na retro-disco atmosféru, ale s moderním nádechem a svěžím zvukem. Album se zabývá osobním růstem, sebevědomím a emocemi, které přicházejí se ztrátami i vítězstvími. Vizuálně i zvukově odráží mořskou symboliku — představuje klid, sílu a vyrovnanost.</p>
+<p>Projekt navazuje na retro-disco atmosféru s moderním nádechem a svěžím zvukem. Zabývá se osobním růstem, sebevědomím a emocemi.</p>
 </div>
 </div>
 </div>
@@ -97,11 +97,11 @@ header p{max-width:800px;margin:25px auto 0;font-size:1.1rem;line-height:1.7;col
 <section id="page-live" class="album-page">
 <button class="back" onclick="closeAlbum()">← Zpět</button>
 <div class="album-header">
-<img src="Live_from_the_Royal_Albert_Hall.jfif" alt="Live from the Royal Albert Hall">
+<img src="images/Live_from_the_Royal_Albert_Hall.jpg" alt="Live from the Royal Albert Hall">
 <div>
 <h2>Live from the Royal Albert Hall (2024)</h2>
 <div class="album-desc">
-<p>Živé album nahrané 27. října 2024 — koncertní záznam s autentickou atmosférou, živou kapelou a orchestry. Obsahuje vystoupení všech hitů z Radical Optimism i dalších alb Dua Lipy.</p>
+<p>Živé album s vystoupením všech hitů. Každá skladba má audio i video verzi.</p>
 </div>
 </div>
 </div>
@@ -110,7 +110,7 @@ header p{max-width:800px;margin:25px auto 0;font-size:1.1rem;line-height:1.7;col
 
 <div id="mini-player">
 <div class="mini-left">
-<img id="mini-cover" class="mini-cover" src="Radical_Optimism_Cover.jpg">
+<img id="mini-cover" class="mini-cover" src="images/Radical_Optimism_Cover.jpg">
 <div>
 <div id="mini-title" class="mini-title">—</div>
 <div id="mini-time" style="color:#eafafa;font-weight:700">0:00 / 0:00</div>
@@ -129,7 +129,7 @@ header p{max-width:800px;margin:25px auto 0;font-size:1.1rem;line-height:1.7;col
 <div class="fs-controls">
 <div class="fs-left">
 <div style="width:72px;height:72px;background:#000;border-radius:10px;margin-right:12px;overflow:hidden">
-<img id="fs-cover" src="radical_optimism.jpg" alt="cover" style="width:100%;height:100%;object-fit:cover">
+<img id="fs-cover" src="images/Radical_Optimism_Cover.jpg" alt="cover" style="width:100%;height:100%;object-fit:cover">
 </div>
 <div>
 <div id="fs-title" class="fs-title">—</div>
@@ -152,39 +152,39 @@ header p{max-width:800px;margin:25px auto 0;font-size:1.1rem;line-height:1.7;col
 <script>
 const albumsData = {
 radical:[
-{num:1,title:"End Of An Era",mp3:"mech.mp3",duration:"3:15"},
-{num:2,title:"Houdini",mp3:"kouzelník.mp3",duration:"3:08"},
-{num:3,title:"Training Season",mp3:"60m.mp3",duration:"3:46"},
-{num:4,title:"These Walls",mp3:"zeď.mp3",duration:"3:37"},
-{num:5,title:"Whatcha Doing",mp3:"Co.mp3",duration:"3:17"},
-{num:6,title:"French Exit",mp3:"Francosisch.mp3",duration:"3:21"},
-{num:7,title:"Illusion",mp3:"Iluze.mp3",duration:"3:09"},
-{num:8,title:"Falling Forever",mp3:"Padat.mp3",duration:"3:42"},
-{num:9,title:"Anything For Love",mp3:"Láska.mp3",duration:"2:21"},
-{num:10,title:"Maria",mp3:"Marie.mp3",duration:"3:07"},
-{num:11,title:"Happy For You",mp3:"Pro tebe.mp3",duration:"4:04"}
+{num:1,title:"End Of An Era",mp3:"audio/mech.mp3",video:"video/live_overture.mp4",duration:"3:15"},
+{num:2,title:"Houdini",mp3:"audio/kouzelník.mp3",video:"video/live_houdini.mp4",duration:"3:08"},
+{num:3,title:"Training Season",mp3:"audio/60m.mp3",video:"video/live_training.mp4",duration:"3:46"},
+{num:4,title:"These Walls",mp3:"audio/zeď.mp3",video:"video/live_these_walls.mp4",duration:"3:37"},
+{num:5,title:"Whatcha Doing",mp3:"audio/Co.mp3",video:"video/live_whatcha_doing.mp4",duration:"3:17"},
+{num:6,title:"French Exit",mp3:"audio/Francosisch.mp3",video:"video/live_french_exit.mp4",duration:"3:21"},
+{num:7,title:"Illusion",mp3:"audio/Iluze.mp3",video:"video/live_illusion.mp4",duration:"3:09"},
+{num:8,title:"Falling Forever",mp3:"audio/Padat.mp3",video:"video/live_falling_forever.mp4",duration:"3:42"},
+{num:9,title:"Anything For Love",mp3:"audio/Láska.mp3",video:"video/live_anything_for_love.mp4",duration:"2:21"},
+{num:10,title:"Maria",mp3:"audio/Marie.mp3",video:"video/live_maria.mp4",duration:"3:07"},
+{num:11,title:"Happy For You",mp3:"audio/Pro tebe.mp3",video:"video/live_happy_for_you.mp4",duration:"4:04"}
 ],
 live:[
-{num:1,title:"Overture (Live from the Royal Albert Hall)",mp3:"uvod.mp3",duration:"1:47"},
-{num:2,title:"End Of An Era (Live from the Royal Albert Hall)",mp3:"era.mp3",duration:"4:00"},
-{num:3,title:"Houdini (Live from the Royal Albert Hall)",mp3:"kuzelnik.mp3",duration:"3:37"},
-{num:4,title:"Training Season (Live from the Royal Albert Hall)",mp3:"100m.mp3",duration:"3:41"},
-{num:5,title:"These Walls (Live from the Royal Albert Hall)",mp3:"zdi.mp3",duration:"3:51"},
-{num:6,title:"Whatcha Doing (Live from the Royal Albert Hall)",mp3:"what.mp3",duration:"3:59"},
-{num:7,title:"French Exit (Live from the Royal Albert Hall)",mp3:"francois.mp3",duration:"3:46"},
-{num:8,title:"Illusion (Live from the Royal Albert Hall)",mp3:"illuze.mp3",duration:"3:58"},
-{num:9,title:"Falling Forever (Live from the Royal Albert Hall)",mp3:"navždy.mp3",duration:"4:01"},
-{num:10,title:"Anything For Love (Live from the Royal Albert Hall)",mp3:"pro.mp3",duration:"3:10"},
-{num:11,title:"Maria (Live from the Royal Albert Hall)",mp3:"babi.mp3",duration:"3:46"},
-{num:12,title:"Happy For You (Live from the Royal Albert Hall)",mp3:"tebe.mp3",duration:"4:24"},
-{num:13,title:"Love Again (Live from the Royal Albert Hall)",mp3:"znovu.mp3",duration:"6:03"},
-{num:14,title:"Pretty Please (Live from the Royal Albert Hall)",mp3:"prosím.mp3",duration:"3:26"},
-{num:15,title:"Levitating (Live from the Royal Albert Hall)",mp3:"levitovat.mp3",duration:"4:25"},
-{num:16,title:"Sunshine (Live from the Royal Albert Hall)",mp3:"slunce.mp3",duration:"4:43"},
-{num:17,title:"Cold Heart (featuring: Elton John) (Live from the Royal Albert Hall)",mp3:"srdce.mp3",duration:"5:29"},
-{num:18,title:"Be The One (Live from the Royal Albert Hall)",mp3:"pravý.mp3",duration:"4:50"},
-{num:19,title:"Dance The Night (Live from the Royal Albert Hall)",mp3:"barbie.mp3",duration:"4:08"},
-{num:20,title:"Don’t Start Now (Live from the Royal Albert Hall)",mp3:"teď.mp3",duration:"4:26"}
+{num:1,title:"Overture",mp3:"audio/uvod.mp3",video:"video/live_overture.mp4",duration:"1:47"},
+{num:2,title:"End Of An Era",mp3:"audio/era.mp3",video:"video/live_end_of_an_era.mp4",duration:"4:00"},
+{num:3,title:"Houdini",mp3:"audio/kuzelnik.mp3",video:"video/live_houdini.mp4",duration:"3:37"},
+{num:4,title:"Training Season",mp3:"audio/100m.mp3",video:"video/live_training.mp4",duration:"3:41"},
+{num:5,title:"These Walls",mp3:"audio/zdi.mp3",video:"video/live_these_walls.mp4",duration:"3:51"},
+{num:6,title:"Whatcha Doing",mp3:"audio/what.mp3",video:"video/live_whatcha_doing.mp4",duration:"3:59"},
+{num:7,title:"French Exit",mp3:"audio/francois.mp3",video:"video/live_french_exit.mp4",duration:"3:46"},
+{num:8,title:"Illusion",mp3:"audio/illuze.mp3",video:"video/live_illusion.mp4",duration:"3:58"},
+{num:9,title:"Falling Forever",mp3:"audio/navždy.mp3",video:"video/live_falling_forever.mp4",duration:"4:01"},
+{num:10,title:"Anything For Love",mp3:"audio/pro.mp3",video:"video/live_anything_for_love.mp4",duration:"3:10"},
+{num:11,title:"Maria",mp3:"audio/babi.mp3",video:"video/live_maria.mp4",duration:"3:46"},
+{num:12,title:"Happy For You",mp3:"audio/tebe.mp3",video:"video/live_happy_for_you.mp4",duration:"4:24"},
+{num:13,title:"Love Again",mp3:"audio/znovu.mp3",video:"video/live_love_again.mp4",duration:"6:03"},
+{num:14,title:"Pretty Please",mp3:"audio/prosím.mp3",video:"video/live_pretty_please.mp4",duration:"3:26"},
+{num:15,title:"Levitating",mp3:"audio/levitovat.mp3",video:"video/live_levitating.mp4",duration:"4:25"},
+{num:16,title:"Sunshine",mp3:"audio/slunce.mp3",video:"video/live_sunshine.mp4",duration:"4:43"},
+{num:17,title:"Cold Heart",mp3:"audio/srdce.mp3",video:"video/live_cold_heart.mp4",duration:"5:29"},
+{num:18,title:"Be The One",mp3:"audio/pravý.mp3",video:"video/live_be_the_one.mp4",duration:"4:50"},
+{num:19,title:"Dance The Night",mp3:"audio/barbie.mp3",video:"video/live_dance_the_night.mp4",duration:"4:08"},
+{num:20,title:"Don’t Start Now",mp3:"audio/teď.mp3",video:"video/live_dont_start_now.mp4",duration:"4:26"}
 ]
 };
 
@@ -212,55 +212,40 @@ function closeAlbum(){
 }
 
 // -- Mini and fullscreen player JS
-let audio=new Audio(),currentAlbum=[],currentIndex=0;
+let audio=new Audio(),currentAlbum=[],currentIndex=0,videoEl=null;
 
 function playTrack(album,index){
   currentAlbum=albumsData[album];
   currentIndex=index;
-  audio.src=currentAlbum[index].mp3;
+  const track=currentAlbum[index];
+  audio.src=track.mp3;
   audio.play();
   document.getElementById('mini-player').style.display='flex';
   updateMini();
   updateFullscreen();
+  // Play video
+  if(videoEl){
+    videoEl.remove();
+    videoEl=null;
+  }
+  videoEl=document.createElement('video');
+  videoEl.src=track.video;
+  videoEl.controls=true;
+  videoEl.autoplay=true;
+  videoEl.style.width='100%';
+  document.getElementById('page-'+album).appendChild(videoEl);
 }
 
 function updateMini(){
   document.getElementById('mini-title').textContent=currentAlbum[currentIndex].title;
-  document.getElementById('mini-cover').src=currentAlbum[currentIndex].mp3.replace('.mp3','.jpg');
-  document.getElementById('mini-play').textContent=audio.paused?'▶':'⏸';
+  document.getElementById('mini-cover').src='images/Radical_Optimism_Cover.jpg';
 }
 
 function updateFullscreen(){
   document.getElementById('fs-title').textContent=currentAlbum[currentIndex].title;
-  document.getElementById('fs-cover').src=currentAlbum[currentIndex].mp3.replace('.mp3','.jpg');
+  document.getElementById('fs-cover').src='images/Radical_Optimism_Cover.jpg';
 }
 
-document.getElementById('mini-play').onclick=()=>audio.paused?audio.play():audio.pause();
-document.getElementById('mini-prev').onclick=()=>{
-  currentIndex=(currentIndex-1+currentAlbum.length)%currentAlbum.length;
-  playTrack(currentAlbum===albumsData.radical?'radical':'live',currentIndex);
-}
-document.getElementById('mini-next').onclick=()=>{
-  currentIndex=(currentIndex+1)%currentAlbum.length;
-  playTrack(currentAlbum===albumsData.radical?'radical':'live',currentIndex);
-}
-document.getElementById('mini-expand').onclick=()=>document.getElementById('fullscreen-player').style.display='flex';
-
-audio.ontimeupdate=()=>{
-  const c=audio.currentTime,d=audio.duration;
-  document.getElementById('mini-time').textContent=Math.floor(c/60)+':'+('0'+Math.floor(c%60)).slice(-2)+' / '+Math.floor(d/60)+':'+('0'+Math.floor(d%60)).slice(-2);
-  document.querySelector('.progress-fill').style.width=(c/d*100)+'%';
-  document.getElementById('fs-current').textContent=Math.floor(c/60)+':'+('0'+Math.floor(c%60)).slice(-2);
-  document.getElementById('fs-duration').textContent=Math.floor(d/60)+':'+('0'+Math.floor(d%60)).slice(-2);
-}
-audio.onplay=updateMini;
-audio.onpause=updateMini;
-
-function seekTrack(e){
-  const rect=e.currentTarget.getBoundingClientRect();
-  const pct=(e.clientX-rect.left)/rect.width;
-  audio.currentTime=pct*audio.duration;
-}
 </script>
 </body>
 </html>
