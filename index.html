@@ -3,245 +3,298 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Dua Lipa — Fan Page (Radical Optimism & Live from the Royal Albert Hall)</title>
-<link rel="icon" href="Dua_Lipa.jpg" type="image/x-icon">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Dua Lipa — Radical Optimism & Live from the Royal Albert Hall (Fan Page)</title>
+<link rel="icon" href="Dua_Lipa.jpg" type="image/x-icon" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#070809;
-    --card:#1e2430;
-    --muted:#cfcfcf;
-    --radical:#0f8fb0; /* blue-ish for Radical Optimism */
-    --live:#a33a3a; /* dark red for Live */
+    --card:#0f1114;
+    --muted:#cfd8dc;
+    --accent-radical:#19c6c6; /* light turquoise */
+    --accent-live:#9a2f2f;    /* dark red */
+    --glass: rgba(255,255,255,0.03);
+    --glass-2: rgba(255,255,255,0.02);
   }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html,body{height:100%;font-family:"Inter",sans-serif, "Poppins", sans-serif;background:var(--bg);color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:#fff;font-family:"Inter", "Poppins", sans-serif;-webkit-font-smoothing:antialiased;}
   a{color:inherit}
-  /* Header */
-  .container{max-width:1200px;margin:0 auto;padding:28px}
-  header.main{display:flex;gap:28px;align-items:flex-start;padding:28px;border-radius:16px;background:linear-gradient(180deg, rgba(10,10,12,0.9), rgba(4,4,6,0.9));box-shadow:0 12px 40px rgba(0,0,0,0.6);margin-bottom:28px}
-  header.main img.hero{width:220px;height:220px;border-radius:16px;object-fit:cover;flex-shrink:0;box-shadow:0 12px 40px rgba(0,0,0,0.6)}
-  header.main .meta{flex:1;min-width:0}
-  header.main h1{font-size:2rem;margin-bottom:8px}
-  header.main p{color:#d7d7d7;line-height:1.6}
-  .cta-row{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
-  .btn{ background:#40E0D0;color:#042b2b;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,0.45); }
-  .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#ddd}
+  .wrap{max-width:1200px;margin:28px auto;padding:20px;display:flex;flex-direction:column;gap:20px}
 
-  /* Albums grid */
-  .albums-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin:28px 0}
-  .card{ background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px;padding:0;overflow:hidden;cursor:pointer;transition:transform .18s, box-shadow .18s; box-shadow:0 8px 30px rgba(0,0,0,0.5); }
-  .card:hover{transform:translateY(-6px)}
-  .card img{width:100%;height:220px;object-fit:cover;display:block}
-  .card .card-body{padding:14px}
-  .card h3{font-size:1.05rem;margin-bottom:8px}
-  .card p{color:#cfcfcf;font-size:0.95rem;line-height:1.5}
+  /* header */
+  header.top{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px;padding:22px;display:flex;gap:20px;align-items:flex-start;
+    box-shadow:0 12px 40px rgba(0,0,0,0.6);
+  }
+  .hero-wrap{flex:0 0 260px;display:flex;justify-content:center}
+  img.hero{
+    width:100%;max-width:260px;height:260px;object-fit:cover;border-radius:14px;display:block;
+    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+    border:3px solid rgba(255,255,255,0.06);
+  }
+  .header-meta{flex:1;min-width:0}
+  .header-meta h1{font-size:1.9rem;margin-bottom:8px;letter-spacing:0.2px}
+  .header-meta p{color:#d7d7d7;line-height:1.6;margin-bottom:12px}
+  .bio{background:var(--glass);padding:14px;border-radius:10px;color:#e6f0f0;line-height:1.6}
+  .meta-actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:0;background:linear-gradient(90deg,#40E0D0,#135);color:#011; font-weight:700;cursor:pointer;
+    box-shadow:0 8px 24px rgba(0,0,0,0.45)
+  }
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#ddd;font-weight:600}
 
-  /* Album page */
-  .album-page{display:none;padding:22px 0 80px}
-  .album-page.active{display:block;animation:fadeIn .36s ease both}
-  .back{display:inline-block;margin-bottom:18px;background:#ff6b6b;border:0;padding:10px 14px;border-radius:10px;color:#fff;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,0.45)}
-  .album-header{display:flex;gap:18px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
-  .album-header img{width:160px;height:160px;border-radius:12px;object-fit:cover;box-shadow:0 12px 36px rgba(0,0,0,.5)}
-  .album-header h2{font-size:1.5rem}
-  .album-desc{color:#d9d9d9;max-width:900px;line-height:1.6;margin-top:6px}
+  /* albums grid */
+  .albums{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .album-card{background:var(--card);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s;padding-bottom:6px}
+  .album-card:hover{transform:translateY(-6px);box-shadow:0 18px 60px rgba(0,0,0,0.7)}
+  .album-card img{width:100%;height:200px;object-fit:cover;display:block}
+  .album-card .info{padding:12px}
+  .album-card h3{font-size:1.05rem;margin-bottom:8px}
+  .album-card p{color:#cfcfcf;font-size:0.95rem;line-height:1.4}
 
-  /* tracklist / mini player */
-  .tracklist{max-width:980px;margin-top:18px;padding:16px;border-radius:12px;background:rgba(255,255,255,0.02);box-shadow:inset 0 1px 0 rgba(255,255,255,0.01)}
-  .track{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:10px;margin-bottom:10px;transition:0.16s;cursor:pointer}
-  .track:hover{transform:translateY(-4px);background:rgba(255,255,255,0.03)}
-  .track .num{width:36px;text-align:center;color:#aaa;font-weight:800}
-  .track .title{font-weight:700;color:#fff;flex:1;padding-left:12px}
-  .track .duration{color:#aaa;font-weight:700}
+  /* album page (single long page areas) */
+  .album-page{display:none;padding:6px 0 80px}
+  .album-page.active{display:block;animation:fadeIn .34s ease both}
+  .album-header{display:flex;gap:18px;align-items:center;margin:12px 0 18px;flex-wrap:wrap}
+  .album-header img{width:140px;height:140px;border-radius:12px;object-fit:cover;box-shadow:0 8px 36px rgba(0,0,0,0.5)}
+  .album-header h2{font-size:1.35rem}
+  .album-desc{color:#d9d9d9;max-width:920px;line-height:1.6;margin-top:6px}
 
-  /* mini player fixed */
-  #mini-player{position:fixed;left:12px;right:12px;bottom:12px;padding:12px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 12px 36px rgba(0,0,0,.5);display:none;z-index:1500}
-  /* we'll change background dynamically */
-  .mini-left{display:flex;align-items:center;gap:12px}
-  .mini-cover{width:66px;height:66px;border-radius:8px;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,.4)}
-  .mini-title{font-weight:800;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
-  .mini-controls{display:flex;align-items:center;gap:8px}
-  .mini-controls button{width:40px;height:40px;border-radius:50%;border:0;background:#042b2b;color:#fff;font-size:18px;cursor:pointer}
+  .back{display:inline-block;background:#ff6b6b;border:0;padding:10px 14px;border-radius:10px;color:#fff;font-weight:800;cursor:pointer;margin-bottom:12px}
 
-  /* fullscreen player modal (shared) */
-  #fullscreen-player{position:fixed;inset:0;display:none;z-index:2000;align-items:flex-end;justify-content:flex-end;overflow:hidden}
-  #fullscreen-player .overlay{position:absolute;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px)}
-  #fullscreen-player .fs-inner{position:relative;width:100%;padding:28px;background:linear-gradient(90deg, rgba(64,224,208,0.08), rgba(15,79,84,0.08));border-top-left-radius:18px;border-top-right-radius:18px;box-shadow:0 -12px 60px rgba(0,0,0,0.6);z-index:2100}
-  .fs-controls{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
+  /* tracklist */
+  .tracklist{background:var(--glass-2);border-radius:12px;padding:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.01)}
+  .track{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:10px;margin-bottom:10px;transition:all .14s;cursor:pointer}
+  .track:hover{transform:translateY(-4px);background:rgba(255,255,255,0.02)}
+  .track-left{display:flex;align-items:center;gap:12px;min-width:0}
+  .track .num{width:40px;text-align:center;color:#aaa;font-weight:800}
+  .track .title{font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .track .duration{color:#aaa;font-weight:700;padding-left:12px}
+  .track.active{outline:2px solid rgba(255,255,255,0.03);box-shadow:0 6px 20px rgba(0,0,0,0.55)}
+  .track .icons{display:flex;gap:8px;align-items:center}
+
+  /* track image for live page */
+  #track-image {text-align:center;margin-top:18px}
+  #track-image img{max-width:100%;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.5)}
+
+  /* mini player (fixed bottom) */
+  #mini-player{
+    position:fixed;left:12px;right:12px;bottom:12px;padding:12px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 12px 36px rgba(0,0,0,.6);z-index:1600;backdrop-filter: blur(6px)
+  }
+  .mini-left{display:flex;align-items:center;gap:12px;min-width:0}
+  .mini-cover{width:64px;height:64px;border-radius:8px;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  .mini-meta{min-width:0;overflow:hidden}
+  .mini-title{font-weight:800;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
+  .mini-time{color:#eafafa;font-weight:700}
+  .mini-controls{display:flex;gap:8px}
+  .mini-controls button{width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,0.5);color:#fff;font-size:18px;cursor:pointer}
+
+  /* fullscreen player modal */
+  #fullscreen-player{position:fixed;inset:0;display:none;z-index:2200;align-items:flex-end;justify-content:flex-end;overflow:hidden}
+  #fullscreen-player .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.7),rgba(0,0,0,0.6));backdrop-filter:blur(6px)}
+  .fs-panel{position:relative;width:100%;max-height:75vh;padding:20px;border-top-left-radius:18px;border-top-right-radius:18px;z-index:2300;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 -18px 80px rgba(0,0,0,0.7)}
+  .fs-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
   .fs-left{display:flex;gap:12px;align-items:center;min-width:0}
-  .fs-cover{width:72px;height:72px;border-radius:10px;object-fit:cover}
-  .fs-title{font-weight:900;font-size:1.4rem;max-width:60vw;word-break:break-word}
-  .fs-time{font-weight:800}
-  .progress-wrap{width:100%;margin-top:12px}
-  .progress-bar{width:100%;height:12px;background:rgba(255,255,255,0.07);border-radius:10px;overflow:hidden;cursor:pointer}
-  .progress-fill{height:100%;width:0;background:#40E0D0;border-radius:10px;transition:width .06s linear}
+  .fs-cover{width:84px;height:84px;border-radius:10px;object-fit:cover}
+  .fs-title{font-weight:900;font-size:1.25rem;max-width:60vw;word-break:break-word}
+  .fs-sub{color:#cfcfcf;font-weight:600;margin-top:6px;font-size:0.95rem}
+  .fs-controls{display:flex;align-items:center;gap:12px}
+  .fs-controls button{width:56px;height:56px;border-radius:50%;border:0;background:rgba(0,0,0,0.6);color:#fff;font-size:20px;cursor:pointer}
+  .fs-close{position:absolute;top:12px;right:12px;border:0;padding:8px 12px;border-radius:10px;font-weight:800;cursor:pointer;color:#fff;background:rgba(0,0,0,0.6)}
+  .fs-progress{margin-top:12px}
+  .progress-bar{height:14px;background:rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer}
+  .progress-fill{height:100%;width:0;background:var(--accent-radical);border-radius:12px;transition:width .06s linear}
 
-  /* close button */
-  .fs-close{position:absolute;top:14px;right:18px;background:rgba(0,0,0,0.6);border:0;color:#fff;padding:10px 12px;border-radius:10px;font-weight:700;cursor:pointer;z-index:2200}
-  .fs-close.red{background:rgba(163,58,58,0.9)}
-  .fs-close.blue{background:rgba(15,143,176,0.9)}
+  .fs-video{width:100%;height:calc(55vh - 120px);object-fit:cover;border-radius:12px;margin-top:14px;background:#000}
 
-  /* small screens */
+  /* footer */
+  footer{max-width:1200px;margin:18px auto 40px;padding:12px;color:#bdbdbd;text-align:center}
+
+  /* responsiveness */
+  @media (max-width:980px){
+    .header-meta h1{font-size:1.6rem}
+    .hero-wrap{flex:0 0 200px}
+    img.hero{height:200px}
+  }
   @media (max-width:720px){
-    .header{flex-direction:column;align-items:center;text-align:center;padding:20px}
-    .albums-grid{gap:12px}
-    #fullscreen-player .fs-inner{padding:18px}
-    .fs-title{max-width:100%}
+    header.top{flex-direction:column;align-items:center;text-align:center;padding:16px}
+    .hero-wrap{order:-1}
+    .album-header{flex-direction:column;align-items:flex-start}
+    .fs-title{font-size:1rem}
+    .fs-controls button{width:48px;height:48px}
+    .fs-video{height:45vh}
+    #mini-player{left:10px;right:10px;bottom:10px}
   }
 
-  /* animation */
-  .fade-in{animation:fadeIn .35s ease both}
   @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-  /* subtle footer */
-  footer{max-width:1200px;margin:28px auto 80px;padding:18px;color:#bdbdbd;text-align:center}
-  footer small{display:block;color:#9b9b9b;margin-top:6px}
 </style>
 </head>
 <body>
-  <div class="container">
 
-    <!-- ===== HEADER / INTRO ====== -->
-    <header class="main">
-      <img class="hero" src="Dua_Lipa.jpg" alt="Dua Lipa">
-      <div class="meta">
-        <h1>Dua Lipa</h1>
-        <p>
-          Dua Lipa (nar. 22. srpna 1995) je britská zpěvačka a skladatelka albánského původu, která se proslavila svým unikátním mixem tanečního popu, disco a moderní elektroniky. 
-          Její tvorba kombinuje silné melodie, taneční rytmy a výraznou vizuální estetiku. Níže najdeš dvě podrobné sekce — <strong>Radical Optimism (2024)</strong> a <strong>Live from the Royal Albert Hall (2024)</strong> — s kompletními tracklisty (MP3 + MP4), přehrávačem a vizuálním dokončením.
-        </p>
+  <div class="wrap">
 
-        <div class="cta-row">
+    <!-- HEADER -->
+    <header class="top" role="banner" aria-label="Dua Lipa Fan Page header">
+      <div class="hero-wrap">
+        <img class="hero" src="Dua_Lipa.jpg" alt="Dua Lipa portrait">
+      </div>
+
+      <div class="header-meta">
+        <h1>Dua Lipa — Radical Optimism & Live from the Royal Albert Hall</h1>
+
+        <!-- longer professional biography as requested -->
+        <div class="bio" aria-live="polite">
+          <strong>Dua Lipa</strong> (plným jménem Dua Lipa, nar. 22. srpna 1995) je britská zpěvačka, skladatelka
+          a modelka kosovského albánského původu. Pochází z rodiny hudebních kořenů a od dětství ji přitahovala
+          hudba a vizuální umění. Její první průlom přišel s debutovým albem "Dua Lipa" (2017), které ji
+          představilo jako výraznou hlasovou a stylistickou osobnost, a zároveň přineslo hity jako "New Rules" a "IDGAF".
+          Druhé album "Future Nostalgia" (2020) upevnilo její pozici globální popové ikony díky moderním disco
+          rytmům, precizním produkcím a silnému vizuálnímu stylu; skladby jako "Don't Start Now" nebo "Levitating"
+          ji přinesly masivní komerční úspěch a množství ocenění. Dua je známá kombinací tanečního popu, retro-disco
+          prvků, silných vokálních výkonů a odvážného vizuálního přístupu — její koncerty propojují choreografii,
+          živou kapelu a promyšlený design. V roce 2024 se Dua představila s projektem "Radical Optimism" — albem,
+          které zkoumá témata osobního růstu, síly, zranitelnosti a naděje — a živým záznamem "Live from the Royal Albert Hall",
+          kde s Heritage Orchestra přetvořila své písně do bohatých orchestrálních aranží. Kromě hudby se věnuje
+          módě, charitativním aktivitám a využívá svou platformu pro podpora rovnosti a kreativity mezi mladou generací.
+        </div>
+
+        <div class="meta-actions" aria-hidden="false">
           <button class="btn" onclick="scrollToSection('albums')">Prohlédnout alba</button>
-          <button class="btn secondary" onclick="openExternal()">Oficiální web</button>
+          <button class="btn ghost" onclick="openExternal()">Oficiální web</button>
         </div>
       </div>
     </header>
 
-    <!-- ====== ALBUMS MENU ====== -->
-    <section id="albums" class="albums-grid" style="margin-top:18px">
-      <article class="card" onclick="openAlbum('radical')">
-        <img src="radical_optimism.jpg" alt="Radical Optimism">
-        <div class="card-body">
-          <h3>Radical Optimism</h3>
-          <p>Třetí studiové album Dua Lipy (vydáno 3. května 2024). Moderní retro-disco, mořská estetika a silné osobní texty.</p>
+    <!-- ALBUMS LIST -->
+    <section id="albums" class="albums" aria-label="Albums">
+      <article class="album-card" onclick="openAlbum('radical')">
+        <img src="radical_optimism.jpg" alt="Radical Optimism cover">
+        <div class="info">
+          <h3>Radical Optimism (2024)</h3>
+          <p>Třetí studiové album — moderní retro-disco s mořskou estetikou, texty o osobním růstu a síle.</p>
         </div>
       </article>
 
-      <article class="card" onclick="openAlbum('live')">
-        <img src="Live_from_the_Royal_Albert_Hall.jfif" alt="Live from the Royal Albert Hall">
-        <div class="card-body">
-          <h3>Live from the Royal Albert Hall</h3>
-          <p>Živé album nahrané 27. října 2024 — koncertní záznam s bohatými orchestrálními aranžemi.</p>
+      <article class="album-card" onclick="openAlbum('live')">
+        <img src="Live_from_the_Royal_Albert_Hall.jfif" alt="Live from the Royal Albert Hall cover">
+        <div class="info">
+          <h3>Live from the Royal Albert Hall (2024)</h3>
+          <p>Živé album nahrané s Heritage Orchestra — orchestrální aranže, živá kapela a autentická atmosféra koncertu.</p>
         </div>
       </article>
     </section>
 
-    <!-- ====== RADICAL OPTIMISM PAGE ====== -->
-    <section id="page-radical" class="album-page">
+    <!-- RADICAL OPTIMISM PAGE -->
+    <section id="page-radical" class="album-page" aria-labelledby="radical-title">
       <button class="back" onclick="closeAlbum()">← Zpět</button>
       <div class="album-header">
-        <img src="radical_optimism.jpg" alt="Radical Optimism">
+        <img src="radical_optimism.jpg" alt="Radical Optimism album cover">
         <div>
-          <h2>Radical Optimism (2024)</h2>
+          <h2 id="radical-title">Radical Optimism (2024)</h2>
           <div class="album-desc">
-            <p>
-              Radical Optimism je třetí studiové album Dua Lipy — svěží disco-pop s vícevrstevnými aranžemi.
-              Projekt navazuje na retro-disco atmosféru, ale s moderním nádechem a svěžím zvukem. Album se zabývá osobním růstem,
-              sebevědomím a emocemi, které přicházejí se ztrátami i vítězstvími. Vizuálně i zvukově odráží mořskou symboliku — představuje klid,
-              sílu a vyrovnanost.
-            </p>
+            <p>Radical Optimism rozšiřuje Dua Lipa's repertoár směrem k emocím, introspekci a taneční energii. Album
+            kombinuje vrstvené produkce, živé i elektronické prvky a silné melodie, které staví na jejím dosavadním
+            zvuku, ale posouvají ho do dospělejší, více vyzrálé roviny. Níže je kompletní tracklist — kliknutím na
+            skladbu spustíte MP3; pokud je k dispozici MP4, bude v fullscreen modal přehrán i vizuál.</p>
           </div>
         </div>
       </div>
 
-      <div class="tracklist" id="tracklist-radical"></div>
+      <div id="tracklist-radical" class="tracklist" role="list" aria-label="Radical Optimism tracklist"></div>
     </section>
 
-    <!-- ====== LIVE FROM THE ROYAL ALBERT HALL PAGE ====== -->
-    <section id="page-live" class="album-page">
+    <!-- LIVE PAGE -->
+    <section id="page-live" class="album-page" aria-labelledby="live-title">
       <button class="back" onclick="closeAlbum()">← Zpět</button>
       <div class="album-header">
-        <img src="Live_from_the_Royal_Albert_Hall.jfif" alt="Live from the Royal Albert Hall">
+        <img src="Live_from_the_Royal_Albert_Hall.jfif" alt="Live from the Royal Albert Hall cover">
         <div>
-          <h2>Live from the Royal Albert Hall (2024)</h2>
+          <h2 id="live-title">Live from the Royal Albert Hall (2024)</h2>
           <div class="album-desc">
-            <p>
-              Živý záznam Dua Lipy s orchestry a živou kapelou. Tento koncertní set zachycuje energii a atmosféru vystoupení
-              v legendárním Royal Albert Hall s bohatými orchestrálními aranžemi a pečlivě vybranými skladbami z její diskografie.
-            </p>
+            <p>Tento živý záznam zachycuje Dua Lipa na pódiu s Heritage Orchestra. Koncert přináší nové orchestrální
+            aranže a emocionální provedení známých písní. Níže najdete kompletní seznam skladeb z koncertu. Kliknutím
+            spustíte audio; pokud má skladba doprovodné video, otevře se fullscreen modal s videem.</p>
           </div>
         </div>
       </div>
 
-      <div class="tracklist" id="tracklist-live"></div>
+      <div id="tracklist-live" class="tracklist" role="list" aria-label="Live tracklist"></div>
+
+      <div id="track-image" aria-hidden="false">
+        <img src="Royal_Albert_Hall.jpg" alt="Royal Albert Hall image">
+      </div>
     </section>
 
-  </div> <!-- container end -->
+  </div> <!-- wrap end -->
 
-  <!-- MINI PLAYER (global) -->
-  <div id="mini-player" style="display:none">
+  <!-- MINI PLAYER -->
+  <div id="mini-player" role="region" aria-label="Mini player" style="display:none">
     <div class="mini-left">
       <img id="mini-cover" class="mini-cover" src="radical_optimism.jpg" alt="cover">
-      <div>
+      <div class="mini-meta">
         <div id="mini-title" class="mini-title">—</div>
-        <div id="mini-time" style="color:#eafafa;font-weight:700">0:00 / 0:00</div>
+        <div id="mini-time" class="mini-time">0:00 / 0:00</div>
       </div>
     </div>
-    <div class="mini-controls">
-      <button id="mini-prev">⏮</button>
-      <button id="mini-play">▶</button>
-      <button id="mini-next">⏭</button>
-      <button id="mini-expand">⬆</button>
+
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="mini-controls">
+        <button id="mini-prev" title="Previous">⏮</button>
+        <button id="mini-play" title="Play / Pause">▶</button>
+        <button id="mini-next" title="Next">⏭</button>
+      </div>
+      <button id="mini-expand" class="btn ghost" title="Open player">Otevřít</button>
     </div>
   </div>
 
   <!-- FULLSCREEN PLAYER / VIDEO MODAL -->
   <div id="fullscreen-player" aria-hidden="true">
-    <div class="overlay" onclick="closeFullscreen()"></div>
-    <div class="fs-inner">
-      <button id="fs-close" class="fs-close">✖</button>
-      <div class="fs-controls">
+    <div class="overlay" onclick="closeFullscreen()" aria-hidden="true"></div>
+
+    <div class="fs-panel" role="dialog" aria-modal="true" aria-label="Fullscreen player">
+      <button id="fs-close" class="fs-close" aria-label="Zavřít">✖</button>
+
+      <div class="fs-top">
         <div class="fs-left">
           <img id="fs-cover" class="fs-cover" src="radical_optimism.jpg" alt="cover">
           <div>
             <div id="fs-title" class="fs-title">—</div>
-            <div id="fs-sub" style="color:#cfcfcf;font-weight:600;margin-top:6px">Album</div>
+            <div id="fs-sub" class="fs-sub">Album</div>
           </div>
         </div>
 
         <div style="display:flex;align-items:center;gap:12px">
-          <div id="time-big" class="fs-time">0:00 / 0:00</div>
-          <div class="controls">
-            <button id="prev-btn" class="btn">⏮</button>
-            <button id="play-btn" class="btn">▶</button>
-            <button id="next-btn" class="btn">⏭</button>
+          <div id="time-big" style="min-width:120px;text-align:right">0:00 / 0:00</div>
+          <div class="fs-controls">
+            <button id="prev-btn" title="Previous">⏮</button>
+            <button id="play-btn" title="Play / Pause">▶</button>
+            <button id="next-btn" title="Next">⏭</button>
           </div>
         </div>
       </div>
 
-      <div class="progress-wrap">
-        <div id="progress-bar" class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+      <div class="fs-progress">
+        <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
       </div>
 
-      <!-- video element shown when mp4 exists -->
-      <div style="margin-top:14px;">
-        <video id="fs-video" style="width:100%;max-height:55vh;border-radius:12px;background:#000" controls playsinline></video>
-      </div>
+      <video id="fs-video" class="fs-video" controls playsinline preload="metadata" aria-label="Video preview"></video>
     </div>
   </div>
 
   <footer>
-    <small>© 2024 Dua Lipa — fan page (neoficiální). Všechna autorská práva k nahrávkám a videím náleží jejich vlastníkovům.</small>
+    © 2024 Dua Lipa — fan page (neoficiální). Všechna práva k nahrávkám a videím náleží jejich vlastníkm.
   </footer>
 
 <script>
-/* ============================
-   Data: tracklists (you gave these)
-   - Radical: mp3 + mp4
-   - Live: mp3 + mp4
-   ============================ */
-
+/* ------------------------------------------------------------------
+   Data arrays (mp3 + mp4) provided by you. Keep filenames exactly as
+   your local folder contains them (mp3/mp4/jpg/jfif). Adjust names
+   if needed before deploying.
+------------------------------------------------------------------*/
 const radicalTracks = [
   {num:1,title:"End Of An Era",mp3:"mech.mp3",mp4:"a82x20.mp4",duration:"3:15"},
   {num:2,title:"Houdini",mp3:"kouzelník.mp3",mp4:"a82xf4.mp4",duration:"3:08"},
@@ -279,239 +332,222 @@ const liveTracks = [
   {num:20,title:"Don’t Start Now (Live from the Royal Albert Hall)",mp3:"teď.mp3",mp4:"teď.mp4",duration:"4:26"}
 ];
 
-/* ====== renderers ====== */
-function renderTracklist(list, containerId, albumKey){
-  const container = document.getElementById(containerId);
-  container.innerHTML = "";
-  list.forEach((t, idx) => {
-    const div = document.createElement("div");
-    div.className = "track fade-in";
-    div.dataset.index = idx;
-    div.innerHTML = `
-      <div style="display:flex;align-items:center;gap:8px">
-        <div class="num">${t.num}</div>
-        <div class="title">${t.title}</div>
+/* ------------------------------------------------------------------
+   Render tracklists (clean, accessible)
+------------------------------------------------------------------*/
+function createTrackElement(track, albumKey, index) {
+  const el = document.createElement('div');
+  el.className = 'track';
+  el.setAttribute('role','listitem');
+  el.dataset.album = albumKey;
+  el.dataset.index = index;
+  el.innerHTML = `
+    <div class="track-left">
+      <div class="num">${track.num}</div>
+      <div class="title" title="${escapeHtml(track.title)}">${track.title}</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="duration">${track.duration}</div>
+      <div class="icons" aria-hidden="true">
+        <button class="icon-play" title="Přehrát">▶</button>
       </div>
-      <div class="duration">${t.duration}</div>
-    `;
-    div.addEventListener("click", () => playFromAlbum(albumKey, idx));
-    container.appendChild(div);
-  });
+    </div>
+  `;
+  el.addEventListener('click', () => playFromAlbum(albumKey, index));
+  return el;
 }
 
-renderTracklist(radicalTracks, "tracklist-radical", "radical");
-renderTracklist(liveTracks, "tracklist-live", "live");
+function renderList(list, containerId, albumKey){
+  const c = document.getElementById(containerId);
+  c.innerHTML = '';
+  list.forEach((t,i)=> c.appendChild(createTrackElement(t, albumKey, i)));
+}
 
-/* ====== navigation ====== */
-function openAlbum(id){
-  document.querySelectorAll('.album-page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-  // set theme accent for the page (optional)
-  if(id==='radical'){
-    document.querySelector('#page-radical .album-header').style.borderLeft = "4px solid var(--radical)";
+renderList(radicalTracks, 'tracklist-radical', 'radical');
+renderList(liveTracks, 'tracklist-live', 'live');
+
+/* ------------------------------------------------------------------
+   Player state & UI
+------------------------------------------------------------------*/
+const audio = new Audio();
+audio.preload = 'metadata';
+
+let state = {
+  album: null,   // 'radical' or 'live'
+  index: 0,
+  list: null
+};
+
+const miniPlayer = document.getElementById('mini-player');
+const miniCover = document.getElementById('mini-cover');
+const miniTitle = document.getElementById('mini-title');
+const miniTime = document.getElementById('mini-time');
+const miniPlayBtn = document.getElementById('mini-play');
+const miniPrevBtn = document.getElementById('mini-prev');
+const miniNextBtn = document.getElementById('mini-next');
+const miniExpand = document.getElementById('mini-expand');
+
+const fsPanel = document.getElementById('fullscreen-player');
+const fsVideo = document.getElementById('fs-video');
+const fsTitle = document.getElementById('fs-title');
+const fsSub = document.getElementById('fs-sub');
+const fsCover = document.getElementById('fs-cover');
+const fsClose = document.getElementById('fs-close');
+const playBtn = document.getElementById('play-btn');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const progressBar = document.getElementById('progress-bar');
+const progressFill = document.getElementById('progress-fill');
+const timeBig = document.getElementById('time-big');
+
+/* choose album list by key */
+function listFor(key){ return key === 'live' ? liveTracks : radicalTracks; }
+
+/* play a track from an album */
+function playFromAlbum(albumKey, index){
+  state.album = albumKey;
+  state.index = index;
+  state.list = listFor(albumKey);
+  const track = state.list[index];
+
+  // set audio source and play
+  audio.src = track.mp3;
+  audio.play().catch(()=>{ /* ignore autoplay block until user interacts */ });
+
+  // update mini UI
+  miniPlayer.style.display = 'flex';
+  miniTitle.textContent = track.title;
+  miniCover.src = albumKey === 'radical' ? 'radical_optimism.jpg' : 'Live_from_the_Royal_Albert_Hall.jfif';
+
+  // set fs UI
+  fsTitle.textContent = track.title;
+  fsSub.textContent = albumKey === 'radical' ? 'Radical Optimism' : 'Live from the Royal Albert Hall';
+  fsCover.src = miniCover.src;
+
+  // set theme colors accordingly
+  if(albumKey === 'radical'){
+    progressFill.style.background = getComputedStyle(document.documentElement).getPropertyValue('--accent-radical').trim() || '#19c6c6';
+    miniPlayer.style.background = `linear-gradient(90deg,var(--accent-radical), rgba(4,79,86,0.95))`;
+    fsClose.style.background = 'rgba(0,0,0,0.6)';
   } else {
-    document.querySelector('#page-live .album-header').style.borderLeft = "4px solid var(--live)";
+    progressFill.style.background = getComputedStyle(document.documentElement).getPropertyValue('--accent-live').trim() || '#9a2f2f';
+    miniPlayer.style.background = `linear-gradient(90deg,var(--accent-live), #2b1212)`;
+    fsClose.style.background = 'rgba(0,0,0,0.6)';
   }
+
+  // attach mp4 to fsVideo if present
+  if(track.mp4){
+    fsVideo.src = track.mp4;
+    fsVideo.load();
+  } else {
+    fsVideo.removeAttribute('src');
+    fsVideo.pause();
+  }
+
+  highlightActive();
+  updatePlayButtons();
+}
+
+/* prev/next */
+function playNext(){ if(!state.list) return; state.index = (state.index + 1) % state.list.length; playFromAlbum(state.album, state.index); }
+function playPrev(){ if(!state.list) return; state.index = (state.index - 1 + state.list.length) % state.list.length; playFromAlbum(state.album, state.index); }
+
+/* UI event bindings */
+miniPlayBtn.addEventListener('click', togglePlay);
+miniPrevBtn.addEventListener('click', playPrev);
+miniNextBtn.addEventListener('click', playNext);
+miniExpand.addEventListener('click', openFullscreen);
+
+playBtn.addEventListener('click', togglePlay);
+prevBtn.addEventListener('click', playPrev);
+nextBtn.addEventListener('click', playNext);
+fsClose.addEventListener('click', closeFullscreen);
+document.querySelector('#fullscreen-player .overlay').addEventListener('click', closeFullscreen);
+
+audio.addEventListener('timeupdate', ()=> {
+  const c = audio.currentTime || 0;
+  const d = audio.duration || 0;
+  timeBig.textContent = formatTime(c) + ' / ' + formatTime(d);
+  miniTime.textContent = formatTime(c) + ' / ' + formatTime(d);
+  progressFill.style.width = d ? ((c/d)*100) + '%' : '0%';
+});
+
+audio.addEventListener('ended', ()=> { playNext(); });
+audio.addEventListener('play', updatePlayButtons);
+audio.addEventListener('pause', updatePlayButtons);
+
+/* seek on progress */
+progressBar.addEventListener('click', (e)=> {
+  const rect = progressBar.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  if(audio.duration) audio.currentTime = pct * audio.duration;
+});
+
+/* keyboard shortcuts */
+document.addEventListener('keydown', (e)=>{
+  if(e.code === 'Space'){ e.preventDefault(); togglePlay(); }
+  if(e.code === 'ArrowRight') playNext();
+  if(e.code === 'ArrowLeft') playPrev();
+});
+
+/* small helpers */
+function togglePlay(){
+  if(audio.paused) audio.play().catch(()=>{});
+  else audio.pause();
+  updatePlayButtons();
+}
+function updatePlayButtons(){
+  miniPlayBtn.textContent = audio.paused ? '▶' : '⏸';
+  playBtn.textContent = audio.paused ? '▶' : '⏸';
+}
+function openFullscreen(){
+  if(!state.list) return;
+  fsPanel.style.display = 'flex';
+  fsPanel.setAttribute('aria-hidden','false');
+  // try to play video silently if available
+  if(fsVideo.src){
+    fsVideo.muted = true;
+    fsVideo.play().catch(()=>{});
+  }
+}
+function closeFullscreen(){
+  fsPanel.style.display = 'none';
+  fsPanel.setAttribute('aria-hidden','true');
+  if(fsVideo) fsVideo.pause();
+}
+function highlightActive(){
+  document.querySelectorAll('.track').forEach(t=> t.classList.remove('active'));
+  const selector = `div.track[data-album="${state.album}"][data-index="${state.index}"]`;
+  const el = document.querySelector(selector);
+  if(el) el.classList.add('active');
+}
+function formatTime(t){ if(isNaN(t) || !isFinite(t)) return '0:00'; const m = Math.floor(t/60); const s = Math.floor(t%60); return m + ':' + (s<10 ? '0'+s : s); }
+
+/* renderers already called earlier; utility functions for nav */
+function openAlbum(key){
+  document.querySelectorAll('.album-page').forEach(p=>p.classList.remove('active'));
+  const el = document.getElementById('page-'+key);
+  if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 function closeAlbum(){
   document.querySelectorAll('.album-page').forEach(p=>p.classList.remove('active'));
   document.getElementById('albums').scrollIntoView({behavior:'smooth'});
 }
 function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
-function openExternal(){ window.open("https://www.dualipa.com","_blank"); }
+function openExternal(){ window.open('https://www.dualipa.com','_blank') }
 
-/* ====== Player state ====== */
-let audio = new Audio();
-audio.preload = "metadata";
-let currentAlbum = null; // "radical" or "live"
-let currentIndex = 0;
+/* escape html helper for titles */
+function escapeHtml(str){ return String(str).replace(/[&<>"']/g, function(s){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[s]; }); }
 
-// UI elements
-const miniPlayer = document.getElementById('mini-player');
-const miniTitle = document.getElementById('mini-title');
-const miniCover = document.getElementById('mini-cover');
-const miniPlay = document.getElementById('mini-play');
-const miniPrev = document.getElementById('mini-prev');
-const miniNext = document.getElementById('mini-next');
-const miniExpand = document.getElementById('mini-expand');
-const miniTime = document.getElementById('mini-time');
+/* disable right click & copying (keeps parity with original) */
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
 
-const fs = document.getElementById('fullscreen-player');
-const fsInner = fs.querySelector('.fs-inner');
-const fsTitle = document.getElementById('fs-title');
-const fsCover = document.getElementById('fs-cover');
-const fsSub = document.getElementById('fs-sub');
-const fsVideo = document.getElementById('fs-video');
-const fsClose = document.getElementById('fs-close');
-const prevBtn = document.getElementById('prev-btn');
-const playBtn = document.getElementById('play-btn');
-const nextBtn = document.getElementById('next-btn');
-const progressBar = document.getElementById('progress-bar');
-const progressFill = document.getElementById('progress-fill');
-const timeBig = document.getElementById('time-big');
-
-/* Utility to pick list */
-function getAlbumList(name){
-  return name === 'radical' ? radicalTracks : liveTracks;
-}
-
-/* Play logic: chooses mp3 and sets mp4 if exists */
-function playFromAlbum(albumName, idx){
-  currentAlbum = albumName;
-  currentIndex = idx;
-  const list = getAlbumList(albumName);
-  const t = list[idx];
-  // set audio
-  audio.src = t.mp3;
-  audio.play().catch(()=>{ /* autoplay blocked until user interacts */ });
-  // update mini UI
-  miniPlayer.style.display = 'flex';
-  miniTitle.textContent = t.title;
-  miniCover.src = albumName === 'radical' ? 'radical_optimism.jpg' : 'Live_from_the_Royal_Albert_Hall.jfif';
-  // set fullscreen UI
-  fsTitle.textContent = t.title;
-  fsSub.textContent = albumName === 'radical' ? 'Radical Optimism' : 'Live from the Royal Albert Hall';
-  fsCover.src = albumName === 'radical' ? 'radical_optimism.jpg' : 'Live_from_the_Royal_Albert_Hall.jfif';
-  // set modal theme color and close button style
-  const closeBtn = document.getElementById('fs-close');
-  if(albumName === 'radical'){
-    progressFill.style.background = 'var(--radical)';
-    miniPlayer.style.background = 'linear-gradient(90deg,var(--radical), rgba(4,79,86,0.95))';
-    closeBtn.classList.remove('red'); closeBtn.classList.add('blue');
-  } else {
-    progressFill.style.background = 'var(--live)';
-    miniPlayer.style.background = 'linear-gradient(90deg,var(--live), #2b1212)';
-    closeBtn.classList.remove('blue'); closeBtn.classList.add('red');
-  }
-  // set background video if mp4 exists
-  if(t.mp4){
-    try {
-      fsVideo.src = t.mp4;
-      fsVideo.load();
-    } catch(e){
-      fsVideo.removeAttribute('src');
-    }
-  } else {
-    fsVideo.removeAttribute('src');
-    fsVideo.pause();
-  }
-  updateControls();
-}
-
-/* play next / prev */
-function playNext(){
-  const list = getAlbumList(currentAlbum || 'radical');
-  currentIndex = (currentIndex + 1) % list.length;
-  playFromAlbum(currentAlbum || 'radical', currentIndex);
-}
-function playPrev(){
-  const list = getAlbumList(currentAlbum || 'radical');
-  currentIndex = (currentIndex - 1 + list.length) % list.length;
-  playFromAlbum(currentAlbum || 'radical', currentIndex);
-}
-
-/* mini controls */
-miniPlay.addEventListener('click', togglePlay);
-miniPrev.addEventListener('click', playPrev);
-miniNext.addEventListener('click', playNext);
-miniExpand.addEventListener('click', openFullscreen);
-playBtn.addEventListener('click', togglePlay);
-prevBtn.addEventListener('click', playPrev);
-nextBtn.addEventListener('click', playNext);
-fsClose.addEventListener('click', closeFullscreen);
-
-/* audio events */
-audio.addEventListener('timeupdate', () => {
-  const c = audio.currentTime || 0;
-  const d = audio.duration || 0;
-  const format = (t) => {
-    if(isNaN(t) || !isFinite(t)) return '0:00';
-    const m = Math.floor(t/60), s = Math.floor(t%60);
-    return `${m}:${s<10? '0'+s : s}`;
-  };
-  const formatted = `${format(c)} / ${format(d)}`;
-  timeBig.textContent = formatted;
-  miniTime.textContent = formatted;
-  progressFill.style.width = d ? ((c/d)*100) + '%' : '0%';
+/* ensure accessible initial focus */
+document.addEventListener('DOMContentLoaded', ()=> {
+  // nothing auto plays; UI waits for user action
 });
-audio.addEventListener('ended', () => {
-  // try play next track in same album
-  playNext();
-});
-audio.addEventListener('play', updateControls);
-audio.addEventListener('pause', updateControls);
-
-function togglePlay(){
-  if(audio.paused){
-    audio.play().catch(()=>{});
-  } else {
-    audio.pause();
-  }
-  updateControls();
-}
-function updateControls(){
-  miniPlay.textContent = audio.paused ? '▶' : '⏸';
-  playBtn.textContent = audio.paused ? '▶' : '⏸';
-}
-
-/* fullscreen modal open/close */
-function openFullscreen(){
-  // show modal and set video source (video element already updated in playFromAlbum)
-  fs.style.display = 'flex';
-  fs.setAttribute('aria-hidden','false');
-  // autoplay video when opening if there's a source
-  if(fsVideo.src){
-    // play video only if user interacts — many browsers block autoplay with audio, so we keep it muted if autoplay
-    fsVideo.muted = true;
-    fsVideo.play().catch(()=>{ /* ignore */ });
-  }
-}
-function closeFullscreen(){
-  fs.style.display = 'none';
-  fs.setAttribute('aria-hidden','true');
-  // pause background video
-  if(fsVideo){
-    fsVideo.pause();
-  }
-}
-
-/* clicking overlay closes */
-document.querySelector('#fullscreen-player .overlay').addEventListener('click', closeFullscreen);
-
-/* seek on progress bar */
-progressBar.addEventListener('click', (e) => {
-  const rect = progressBar.getBoundingClientRect();
-  const pct = (e.clientX - rect.left) / rect.width;
-  if(audio.duration) audio.currentTime = pct * audio.duration;
-});
-
-/* ensure click on tracks updates UI highlight (optional) */
-function highlightTracklist(){
-  document.querySelectorAll('.track').forEach(tr => tr.classList.remove('active'));
-  const selector = currentAlbum === 'radical' ? '#tracklist-radical' : '#tracklist-live';
-  const list = document.querySelectorAll(selector + ' .track');
-  if(list && list[currentIndex]) list[currentIndex].classList.add('active');
-}
-
-/* keyboard shortcuts (space = play/pause, left/right prev/next) */
-document.addEventListener('keydown', (e) => {
-  if(e.code === 'Space'){ e.preventDefault(); togglePlay(); }
-  if(e.code === 'ArrowRight'){ playNext(); }
-  if(e.code === 'ArrowLeft'){ playPrev(); }
-});
-
-/* initial: render both lists (done earlier). Nothing plays until user clicks a track. */
-
-/* block right-click/copy as in original */
-document.addEventListener('contextmenu', event => event.preventDefault());
-document.addEventListener('copy', event => event.preventDefault());
-
-/* small helper to ensure mini player color reset on page load */
-(function initMiniStyle(){
-  document.getElementById('mini-player').style.display = 'none';
-})();
-
 </script>
 </body>
 </html>
