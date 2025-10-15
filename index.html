@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -85,177 +86,432 @@ button{cursor:pointer}
 .progress-fill{height:100%;width:0;background:#40E0D0;border-radius:12px;transition:width .06s linear;box-shadow:inset 0 -6px 18px rgba(0,0,0,0.25)}
 
 /* accent underline for pages */
-.album-accent {height:6px;border-radius:6px;margin-top:10px;background:linear-gradient(90deg,#ff6b6b,#40E0D0);}
+.album-accent {height:6px;border-radius:6px;margin-top:10px;margin-bottom:14px;}
 
-/* fade in */
-@keyframes fadeIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+/* small screens */
+@media (max-width:820px){
+  .header img{width:180px;height:180px}
+  .card img{height:200px}
+  .fs-title{font-size:1rem}
+  .mini-title{max-width:220px}
+  .fs-cover{width:64px;height:64px}
+  .progress-bar{height:14px}
+}
+
+/* fade animation */
+.fade-in{animation:fadeIn .35s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <div class="container">
+  <header class="header" role="banner" aria-label="Dua Lipa fanpage header">
+    <img src="dualipa.jpg" alt="Dua Lipa">
+    <h1>Dua Lipa</h1>
+    <p>
+      Dua Lipa (narozena 22. srpna 1995 v Londýně, Velká Británie) je britsko-albánsko-kosovská zpěvačka, skladatelka a modelka. Proslavila se svým hlubokým hlasem, výrazným stylem a hity, které kombinují pop, dance a retro prvky.
 
-<!-- HEADER -->
-<div class="header">
-<img src="dualipa.jpg" alt="Dua Lipa">
-<h1>Dua Lipa — Fan Page</h1>
-<p>Vítejte na neoficiální fan stránce Dua Lipy. Objevujte její hudební tvorbu, videa a nejnovější vystoupení.</p>
-</div>
+Hudební kariéru začala nahráváním coverů na YouTube. V roce 2017 vydala své debutové album Dua Lipa, které obsahovalo hity jako “Be the One”, “IDGAF” a především “New Rules”, jenž ji proslavil po celém světě.
 
-<!-- ALBUMS GRID -->
-<div class="albums-grid">
-  <div class="card" onclick="openAlbum('radical')">
-    <img src="radical.jpg" alt="Radical Optimism">
-    <div class="card-body">
-      <h3>Radical Optimism</h3>
-      <p>Debutové extended album Dua Lipy, kombinující energii popu a dance hudby.</p>
-    </div>
-  </div>
-  <div class="card" onclick="openAlbum('live')">
-    <img src="live.jpg" alt="Live from Royal Albert Hall">
-    <div class="card-body">
-      <h3>Live from Royal Albert Hall</h3>
-      <p>Nahrávka živého vystoupení Dua Lipy z Royal Albert Hall. Neopakovatelná show.</p>
-    </div>
-  </div>
-</div>
+Druhé album “Future Nostalgia” (2020) s písněmi “Don’t Start Now”, “Physical” a “Levitating” získalo Grammy za Best Pop Vocal Album a upevnilo její postavení mezi největšími hvězdami popu.
 
-<!-- ALBUM PAGES -->
-<div class="album-page" id="page-radical">
-  <button class="back" onclick="closeAlbum()">← Zpět</button>
-  <div class="album-header">
-    <img src="radical.jpg" alt="Radical Optimism">
-    <div>
-      <h2>Radical Optimism — Extended Versions</h2>
-      <p class="album-desc">Rozšířená verze debutového alba Dua Lipy s remixy a bonusovými skladbami, zachycující její optimistický přístup k životu a hudbě.</p>
-    </div>
-  </div>
-  <div class="tracklist">
-    <div class="track" onclick="playTrack('track1.mp3','Radical Optimism')">
-      <div class="left"><div class="num">1</div><div class="title">Optimistic Heart</div></div>
-      <div class="duration">3:42</div>
-    </div>
-    <div class="track" onclick="playTrack('track2.mp3','Radical Optimism')">
-      <div class="left"><div class="num">2</div><div class="title">Sunrise Dance</div></div>
-      <div class="duration">4:08</div>
-    </div>
-  </div>
-</div>
+V roce 2024 vydala třetí album “Radical Optimism”, inspirované britským popem 90. let a optimismem i v těžkých časech. Dua je známá svým originálním vizuálním stylem, charismatickými vystoupeními a podporou žen v hudbě.
+  </header>
 
-<div class="album-page" id="page-live">
-  <button class="back" onclick="closeAlbum()">← Zpět</button>
-  <div class="album-header">
-    <img src="live.jpg" alt="Live Royal">
-    <div>
-      <h2>Live from Royal Albert Hall</h2>
-      <p class="album-desc">Nejlepší vystoupení Dua Lipy v živém provedení, zachyceno přímo z Royal Albert Hall s nezapomenutelnou atmosférou.</p>
-    </div>
-  </div>
-  <div class="tracklist">
-    <div class="track" onclick="playTrack('live1.mp3','Live from Royal Albert Hall')">
-      <div class="left"><div class="num">1</div><div class="title">Levitating (Live)</div></div>
-      <div class="duration">4:12</div>
-    </div>
-    <div class="track" onclick="playTrack('live2.mp3','Live from Royal Albert Hall')">
-      <div class="left"><div class="num">2</div><div class="title">Future Nostalgia (Live)</div></div>
-      <div class="duration">3:56</div>
-    </div>
-  </div>
-</div>
+  <!-- ALBUMS GRID -->
+  <section class="albums-grid" aria-label="Výběr alb">
+    <article class="card" onclick="openAlbum('radical')" tabindex="0" onkeydown="if(event.key==='Enter') openAlbum('radical')">
+      <img src="radical_optimism.jpg" alt="Radical Optimism cover">
+      <div class="card-body">
+        <h3>Radical Optimism</h3>
+        <p>je třetí studiové album Dua Lipy vydané 3. května 2024. 
+      Projekt navazuje na retro-disco atmosféru, ale s moderním nádechem a svěžím zvukem. 
+      Album se zabývá osobním růstem, sebevědomím a emocemi, které přicházejí se ztrátami i vítězstvími. 
+      Vizuálně i zvukově odráží mořskou symboliku — představuje klid, sílu a vyrovnanost.</p>
+      </div>
+    </article>
 
-</div> <!-- container end -->
+    <article class="card" onclick="openAlbum('live')" tabindex="0" onkeydown="if(event.key==='Enter') openAlbum('live')">
+      <img src="Live_from_the_Royal_Albert_Hall.jfif" alt="Live from the Royal Albert Hall cover">
+      <div class="card-body">
+        <h3>Live from the Royal Albert Hall</h3>
+        <p>Live from the Royal Albert Hall je živé album nahrané 27. října 2024 anglicko-albánsko-kosovskou zpěvačkou Dua Lipou a 53 členým orchestrem Heritage Orchestra v legendárním Royal Albert Hall v Londýně. Obsahuje energická vystoupení jejích největších hitů s živou kapelou, choreografií a unikátní atmosférou koncertu. Album zachycuje autentický koncertní zážitek a intimitu vystoupení pro fanoušky na celém světě. Skladby jsou doplněny bohatými orchestrálními aranžemi, které přinášejí nové dimenze známým písním a ukazují umělecký růst Dua Lipy. Prožijte tento nezapomenutelný zážitek 81 minutami zaznamenaným koncertem.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- RADICAL OPTIMISM PAGE -->
+  <section id="page-radical" class="album-page" aria-hidden="true">
+    <button class="back" onclick="closeAlbum()">← Zpět</button>
+    <div class="album-header">
+      <img src="radical_optimism.jpg" alt="Radical Optimism">
+      <div>
+        <h2>Radical Optimism (2024)</h2>
+        <div class="album-desc">
+          <p>„Radical Optimism“ je třetí studiové album Dua Lipy a představuje vrchol její hudební zralosti, originality a schopnosti propojit moderní pop s retro prvky. Album vznikalo po úspěchu Future Nostalgia (2020) a reflektuje osobní růst, odhodlání a pozitivní přístup i přes náročné období v životě a světových událostech. Dua se snaží prostřednictvím hudby přinést naději, sílu a radost, a proto nese název „Radical Optimism“ – radikální optimismus.<p>
+
+Zvukově se album inspirovalo britským popem 90. let, elektronickým a tanečním popem, ale nezapomíná ani na Duin charakteristický hluboký hlas a výrazné melodické linky. Produkce kombinuje moderní beaty, syntezátory, funky kytary a živé instrumenty, což vytváří dynamický a chytlavý zvuk.<p>
+        </div>
+      </div>
+    </div>
+
+    <div class="album-accent" id="accent-radical" style="background: linear-gradient(90deg,#40E0D0,#0ea99a)"></div>
+    <div id="tracklist-radical" class="tracklist" aria-label="Tracklist Radical Optimism"></div>
+  </section>
+
+  <!-- LIVE PAGE -->
+  <section id="page-live" class="album-page" aria-hidden="true">
+    <button class="back" onclick="closeAlbum()">← Zpět</button>
+    <div class="album-header">
+      <img src="Live_from_the_Royal_Albert_Hall.jfif" alt="Live from the Royal Albert Hall">
+      <div>
+        <h2>Live from the Royal Albert Hall (2024)</h2>
+        <div class="album-desc">
+          <p>„Live from the Royal Albert Hall“ je záznam jednoho z nejvýznamnějších živých vystoupení Dua Lipy v její kariéře. Koncert se odehrál v legendární londýnské síni Royal Albert Hall, známé svou vynikající akustikou, historickou prestiží a exkluzivní atmosférou. Album zachycuje autenticitu, energii a charismatické vystupování Dua Lipy, přičemž nabízí fanouškům možnost zažít její koncert téměř tak, jako by byli přímo na místě.
+
+Dua Lipa na pódiu vystupuje s živou kapelou, tanečníky a propracovanou choreografií, která kombinuje moderní vizuální efekty s dynamickým pohybem. Koncert propojuje energické taneční skladby s emotivními baladami, čímž ukazuje svou všestrannost a schopnost vytvořit komplexní hudební zážitek.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="album-accent" id="accent-live" style="background: linear-gradient(90deg,#b30000,#ff6b6b)"></div>
+    <div id="tracklist-live" class="tracklist" aria-label="Tracklist Live"></div>
+  </section>
+
+  <!-- LONG BIO -->
+  <section style="margin-top:20px;padding:20px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));">
+    <h2 style="margin-bottom:12px">Dua Lipa</h2>
+    <p style="color:#d7d7d7;line-height:1.65;margin-bottom:12px">
+      Dua Lipa (narozena 22. srpna 1995 v Londýně, Velká Británie) je britsko-albánsko-kosovská zpěvačka, textařka a modelka, patřící mezi nejvýraznější popové hvězdy současnosti. Je známá svým charakteristickým hlasem, sebevědomým vystupováním a kombinací moderního popu s prvky diska, funku a taneční hudby.
+
+Její rodiče pocházejí z Kosova, odkud se přestěhovali do Londýna ještě před jejím narozením. V dětství Dua poslouchala interprety jako Nelly Furtado, P!nk, Kylie Minogue či Christina Aguilera, kteří ji silně ovlivnili. Když jí bylo jedenáct, rodina se vrátila do Kosova, ale o několik let později se Dua sama vrátila zpět do Londýna, aby si splnila sen stát se zpěvačkou.
+
+Svoji kariéru začala zveřejňováním coververzí známých písní na YouTube. Díky svému výraznému hlasu si brzy získala pozornost hudebních producentů a v roce 2015 podepsala smlouvu s vydavatelstvím Warner Bros. Records.
+
+Její debutové album „Dua Lipa“ vyšlo v roce 2017 a přineslo hity jako „Be the One“, „Hotter Than Hell“, „IDGAF“ a zejména „New Rules“, která se stala mezinárodním hitem a hymnou ženské síly. Za toto období získala řadu ocenění, včetně dvou Brit Awards.
+
+V roce 2020 vydala druhé album „Future Nostalgia“, které se stalo celosvětovým fenoménem. Kombinuje retro disco styl s moderní produkcí a obsahuje hity jako „Don’t Start Now“, „Physical“, „Break My Heart“ a „Levitating“. Album získalo Grammy za nejlepší popové vokální album a upevnilo Duinu pozici světové superstar.
+
+Roku 2024 představila své třetí studiové album „Radical Optimism“, inspirované britským popem 90. let a tématy osobního růstu a odvahy. Kromě hudby se Dua věnuje také módě – spolupracovala se značkami jako Versace, YSL Beauty a Puma – a aktivně podporuje charitativní projekty i práva žen.
+
+Dua Lipa vystoupila na mnoha světových festivalech a předávaních cen, včetně Grammy Awards, Brit Awards či MTV Europe Music Awards. V roce 2024 také odehrála speciální koncert „Live from the Royal Albert Hall“, který byl velmi chválen za energii, vizuál a vokální výkon.
+  </section>
+
+  <!-- bottom image -->
+  <div style="text-align:center;margin-top:24px;">
+    <img src="Royal_Albert_Hall.jpg" alt="Royal Albert Hall" style="max-width:100%;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.6)">
+  </div>
+
+</div> <!-- /container -->
 
 <!-- MINI PLAYER -->
-<div id="mini-player">
+<div id="mini-player" class="fade-in" aria-hidden="true" role="region" aria-label="mini přehrávač">
   <div class="mini-left">
-    <img src="" class="mini-cover" id="mini-cover">
-    <div class="mini-title" id="mini-title">Track Name</div>
+    <img id="mini-cover" class="mini-cover" src="radical_optimism.jpg" alt="cover">
+    <div style="min-width:0">
+      <div id="mini-title" class="mini-title">—</div>
+      <div id="mini-time" class="mini-time">0:00 / 0:00</div>
+    </div>
   </div>
-  <div class="mini-controls">
-    <button onclick="togglePlay()">▶️/⏸️</button>
-    <div class="mini-time" id="mini-time">0:00</div>
-    <button onclick="openFullscreen()">⛶</button>
+  <div class="mini-controls" role="group" aria-label="mini controls">
+    <button id="mini-prev" title="Předchozí">⏮</button>
+    <button id="mini-play" title="Přehrát / Pauza">▶</button>
+    <button id="mini-next" title="Další">⏭</button>
+    <button id="mini-expand" title="Otevřít video">⬆</button>
   </div>
 </div>
 
-<!-- FULLSCREEN PLAYER -->
-<div id="fullscreen-player">
-  <div class="bg-video-wrap">
-    <video id="fs-video" src="" autoplay muted></video>
-  </div>
-  <button id="fs-close" onclick="closeFullscreen()">×</button>
+<!-- FULLSCREEN PLAYER (shared) -->
+<div id="fullscreen-player" aria-hidden="true" role="dialog" aria-label="fullscreen video player">
+  <div class="bg-video-wrap"><video id="fs-video" autoplay muted loop playsinline></video></div>
+
+  <button id="fs-close" title="Zavřít video">✖</button>
+
   <div id="fs-controls-panel">
     <div class="fs-top">
       <div class="fs-left">
-        <img src="" class="fs-cover" id="fs-cover">
-        <div class="fs-title" id="fs-title">Track Name</div>
+        <img id="fs-cover" class="fs-cover" src="radical_optimism.jpg" alt="cover">
+        <div class="fs-title" id="fs-title">—</div>
       </div>
-      <div class="fs-time" id="fs-time">0:00</div>
+
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div id="fs-time" class="fs-time">0:00 / 0:00</div>
+        <div class="fs-controls" role="group" aria-label="fullscreen controls">
+          <button id="fs-prev" title="Předchozí">⏮</button>
+          <button id="fs-play" title="Přehrát / Pauza">▶</button>
+          <button id="fs-next" title="Další">⏭</button>
+        </div>
+      </div>
     </div>
+
     <div class="progress-wrap">
-      <div class="progress-bar" id="fs-progress">
-        <div class="progress-fill" id="fs-progress-fill"></div>
+      <div id="fs-progress" class="progress-bar" title="Kliknutím přejít">
+        <div id="fs-progress-fill" class="progress-fill"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- AUDIO ELEMENT -->
-<audio id="audio"></audio>
-
 <script>
-const audio = document.getElementById('audio');
+/* ---------- DATASOURCE: tracklisty (mp3 + mp4) ---------- */
+const albumsData = {
+  radical: [
+    {num:1,title:"End Of An Era",mp3:"mech.mp3",mp4:"a82x20.mp4",duration:"3:15"},
+    {num:2,title:"Houdini",mp3:"kouzelník.mp3",mp4:"a82xf4.mp4",duration:"3:08"},
+    {num:3,title:"Training Season",mp3:"60m.mp3",mp4:"a82xvv.mp4",duration:"3:46"},
+    {num:4,title:"These Walls",mp3:"zeď.mp3",mp4:"a82xxp.mp4",duration:"3:37"},
+    {num:5,title:"Whatcha Doing",mp3:"Co.mp3",mp4:"a82ywb.mp4",duration:"3:17"},
+    {num:6,title:"French Exit",mp3:"Francosisch.mp3",mp4:"a82yxv.mp4",duration:"3:21"},
+    {num:7,title:"Illusion",mp3:"Iluze.mp3",mp4:"a8t6wp.mp4",duration:"3:09"},
+    {num:8,title:"Falling Forever",mp3:"Padat.mp3",mp4:"a82zjs.mp4",duration:"3:42"},
+    {num:9,title:"Anything For Love",mp3:"Láska.mp3",mp4:"a82zlw.mp4",duration:"2:21"},
+    {num:10,title:"Maria",mp3:"Marie.mp3",mp4:"a82zxw.mp4",duration:"3:07"},
+    {num:11,title:"Happy For You",mp3:"Pro tebe.mp3",mp4:"a83003.mp4",duration:"4:04"}
+  ],
+  live: [
+    {num:1,title:"Overture (Live from the Royal Albert Hall)",mp3:"uvod.mp3",mp4:"a892zo.mp4",duration:"1:47"},
+    {num:2,title:"End Of An Era (Live from the Royal Albert Hall)",mp3:"era.mp3",mp4:"a8947k.mp4",duration:"4:00"},
+    {num:3,title:"Houdini (Live from the Royal Albert Hall)",mp3:"kuzelnik.mp3",mp4:"a88wpd.mp4",duration:"3:37"},
+    {num:4,title:"Training Season (Live from the Royal Albert Hall)",mp3:"100m.mp3",mp4:"a88y8r.mp4",duration:"3:41"},
+    {num:5,title:"These Walls (Live from the Royal Albert Hall)",mp3:"zdi.mp3",mp4:"a89cke.mp4",duration:"3:51"},
+    {num:6,title:"Whatcha Doing (Live from the Royal Albert Hall)",mp3:"what.mp3",mp4:"Untitled videwdo.mp4",duration:"3:59"},
+    {num:7,title:"French Exit (Live from the Royal Albert Hall)",mp3:"francois.mp3",mp4:"Untitled video (2).mp4",duration:"3:46"},
+    {num:8,title:"Illusion (Live from the Royal Albert Hall)",mp3:"illuze.mp3",mp4:"a89isb.mp4",duration:"3:58"},
+    {num:9,title:"Falling Forever (Live from the Royal Albert Hall)",mp3:"navždy.mp3",mp4:"Untitled video (3).mp4",duration:"4:01"},
+    {num:10,title:"Anything For Love (Live from the Royal Albert Hall)",mp3:"pro.mp3",mp4:"Záznam obrazovky 2025-10-12 200131.mp4",duration:"3:10"},
+    {num:11,title:"Maria (Live from the Royal Albert Hall)",mp3:"babi.mp3",mp4:"a89ovs.mp4",duration:"3:46"},
+    {num:12,title:"Happy For You (Live from the Royal Albert Hall)",mp3:"tebe.mp3",mp4:"Záznam obrazovky 2025-10-12 200800.mp4",duration:"4:24"},
+    {num:13,title:"Love Again (Live from the Royal Albert Hall)",mp3:"znovu.mp3",mp4:"a8d9nu.mp4",duration:"6:03"},
+    {num:14,title:"Pretty Please (Live from the Royal Albert Hall)",mp3:"prosím.mp3",mp4:"blowyourmind.mp4",duration:"3:26"},
+    {num:15,title:"Levitating (Live from the Royal Albert Hall)",mp3:"levitovat.mp3",mp4:"blowyourmind.mp4",duration:"4:25"},
+    {num:16,title:"Sunshine (Live from the Royal Albert Hall)",mp3:"slunce.mp3",mp4:"blowyourmind.mp4",duration:"4:43"},
+    {num:17,title:"Cold Heart (featuring: Elton John) (Live from the Royal Albert Hall)",mp3:"srdce.mp3",mp4:"blowyourmind.mp4",duration:"5:29"},
+    {num:18,title:"Be The One (Live from the Royal Albert Hall)",mp3:"pravý.mp3",mp4:"pravý.mp4",duration:"4:50"},
+    {num:19,title:"Dance The Night (Live from the Royal Albert Hall)",mp3:"barbie.mp3",mp4:"barbie.mp4",duration:"4:08"},
+    {num:20,title:"Don’t Start Now (Live from the Royal Albert Hall)",mp3:"teď.mp3",mp4:"teď.mp4",duration:"4:26"}
+  ]
+};
+
+/* ---------- RENDER TRACKLISTS ---------- */
+function renderTracklist(albumKey, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  const list = albumsData[albumKey] || [];
+  list.forEach((t, idx) => {
+    const div = document.createElement("div");
+    div.className = "track fade-in";
+    div.dataset.index = idx;
+    div.innerHTML = `<div class="left"><div class="num">${t.num}</div><div class="title" title="${t.title}">${t.title}</div></div><div class="duration">${t.duration}</div>`;
+    div.addEventListener("click", () => startPlayback(albumKey, idx));
+    container.appendChild(div);
+  });
+}
+renderTracklist('radical', 'tracklist-radical');
+renderTracklist('live', 'tracklist-live');
+
+/* ---------- PLAYER (audio + background video) ---------- */
+let currentAlbumKey = null;
+let currentIndex = 0;
+const audio = new Audio();
+audio.preload = "metadata";
+const fsVideo = document.getElementById('fs-video');
+
 const miniPlayer = document.getElementById('mini-player');
 const miniTitle = document.getElementById('mini-title');
 const miniCover = document.getElementById('mini-cover');
 const miniTime = document.getElementById('mini-time');
+const miniPlayBtn = document.getElementById('mini-play');
+const miniPrevBtn = document.getElementById('mini-prev');
+const miniNextBtn = document.getElementById('mini-next');
+const miniExpandBtn = document.getElementById('mini-expand');
 
 const fsPlayer = document.getElementById('fullscreen-player');
-const fsVideo = document.getElementById('fs-video');
-const fsTitle = document.getElementById('fs-title');
 const fsCover = document.getElementById('fs-cover');
+const fsTitle = document.getElementById('fs-title');
 const fsTime = document.getElementById('fs-time');
+const fsPlayBtn = document.getElementById('fs-play');
+const fsPrevBtn = document.getElementById('fs-prev');
+const fsNextBtn = document.getElementById('fs-next');
+const fsCloseBtn = document.getElementById('fs-close');
 const fsProgress = document.getElementById('fs-progress');
 const fsProgressFill = document.getElementById('fs-progress-fill');
 
-function playTrack(src,title){
-  audio.src = src;
-  audio.play();
-  miniTitle.textContent = title;
-  fsTitle.textContent = title;
-  miniPlayer.style.display = 'flex';
-}
+/* color mapping */
+const albumColor = {
+  radical: { accent: '#40E0D0', panel: 'linear-gradient(90deg, rgba(64,224,208,0.95), rgba(4,62,58,0.95))' },
+  live: { accent: '#ff6b6b', panel: 'linear-gradient(90deg, rgba(255,107,107,0.95), rgba(30,10,10,0.95))' }
+};
 
-function togglePlay(){
-  if(audio.paused) audio.play();
-  else audio.pause();
-}
+function startPlayback(albumKey, index) {
+  const track = (albumsData[albumKey] || [])[index];
+  if (!track) return;
+  currentAlbumKey = albumKey;
+  currentIndex = index;
 
-audio.addEventListener('timeupdate',()=>{
-  let min = Math.floor(audio.currentTime/60);
-  let sec = Math.floor(audio.currentTime%60);
-  if(sec<10) sec='0'+sec;
-  miniTime.textContent=min+':'+sec;
-  fsTime.textContent=min+':'+sec;
-  if(audio.duration){
-    fsProgressFill.style.width=(audio.currentTime/audio.duration*100)+'%';
+  // set audio
+  audio.src = track.mp3;
+  audio.currentTime = 0;
+  audio.play().catch(()=>{}); // user gesture may be required
+
+  // set video (looped) if exists
+  if (track.mp4) {
+    fsVideo.src = track.mp4;
+    fsVideo.loop = true; // loop video until audio ends
+    fsVideo.currentTime = 0;
+    fsVideo.play().catch(()=>{});
+  } else {
+    fsVideo.pause();
+    fsVideo.removeAttribute('src');
+    fsVideo.load();
   }
-});
 
-fsProgress.addEventListener('click',e=>{
-  const rect = fsProgress.getBoundingClientRect();
-  const pct = (e.clientX-rect.left)/rect.width;
-  audio.currentTime = pct * audio.duration;
-});
+  // show mini player & populate info
+  miniPlayer.style.display = 'flex';
+  miniTitle.textContent = track.title;
+  miniCover.src = albumKey === 'radical' ? 'radical_optimism.jpg' : 'Live_from_the_Royal_Albert_Hall.jfif';
+  fsCover.src = miniCover.src;
+  fsTitle.textContent = track.title;
 
-function openAlbum(key){
-  document.querySelectorAll('.album-page').forEach(p=>p.classList.remove('active'));
-  const page=document.getElementById('page-'+key);
-  if(page) page.classList.add('active');
+  // style (mini & fs)
+  stylePlayersForAlbum(albumKey);
+
+  updateTimeDisplays();
 }
-function closeAlbum(){document.querySelectorAll('.album-page').forEach(p=>p.classList.remove('active'));}
-function openFullscreen(){fsPlayer.style.display='flex';fsPlayer.setAttribute('aria-hidden','false');}
-function closeFullscreen(){fsPlayer.style.display='none';fsPlayer.setAttribute('aria-hidden','true');}
 
+function stylePlayersForAlbum(albumKey) {
+  const accent = albumColor[albumKey].accent;
+  const panel = albumColor[albumKey].panel;
+  // mini player gradient
+  miniPlayer.style.background = `linear-gradient(90deg, ${accent}, rgba(10,10,10,0.28))`;
+  // fs panel
+  document.getElementById('fs-controls-panel').style.background = panel;
+  // progress colors
+  fsProgressFill.style.background = accent;
+  // also change the accent bars on pages
+  document.getElementById('accent-radical').style.opacity = albumKey === 'radical' ? '1' : '0.35';
+  document.getElementById('accent-live').style.opacity = albumKey === 'live' ? '1' : '0.35';
+}
+
+/* controls wiring */
+miniPlayBtn.addEventListener('click', togglePlay);
+fsPlayBtn.addEventListener('click', togglePlay);
+miniPrevBtn.addEventListener('click', playPrev);
+miniNextBtn.addEventListener('click', playNext);
+fsPrevBtn.addEventListener('click', playPrev);
+fsNextBtn.addEventListener('click', playNext);
+miniExpandBtn.addEventListener('click', openFullscreen);
+fsCloseBtn.addEventListener('click', closeFullscreen);
+
+/* play / pause */
+function togglePlay() {
+  if (audio.paused) {
+    audio.play().catch(()=>{});
+    try { fsVideo.play().catch(()=>{}); } catch(e){}
+  } else {
+    audio.pause();
+    try { fsVideo.pause(); } catch(e){}
+  }
+  updatePlayButtons();
+}
+function updatePlayButtons() {
+  miniPlayBtn.textContent = audio.paused ? '▶' : '⏸';
+  fsPlayBtn.textContent = audio.paused ? '▶' : '⏸';
+}
+
+/* next/prev */
+function playNext() {
+  if (!currentAlbumKey) return;
+  const list = albumsData[currentAlbumKey];
+  currentIndex = (currentIndex + 1) % list.length;
+  startPlayback(currentAlbumKey, currentIndex);
+}
+function playPrev() {
+  if (!currentAlbumKey) return;
+  const list = albumsData[currentAlbumKey];
+  currentIndex = (currentIndex - 1 + list.length) % list.length;
+  startPlayback(currentAlbumKey, currentIndex);
+}
+
+/* audio time updates */
+audio.addEventListener('timeupdate', updateTimeDisplays);
+audio.addEventListener('loadedmetadata', updateTimeDisplays);
+audio.addEventListener('ended', () => {
+  // when audio ends, advance to next track in same album
+  playNext();
+});
+
+function formatTime(t) {
+  if (!t || isNaN(t) || !isFinite(t)) return '0:00';
+  const m = Math.floor(t/60);
+  const s = Math.floor(t%60);
+  return `${m}:${s<10? '0'+s : s}`;
+}
+function updateTimeDisplays() {
+  const c = audio.currentTime || 0;
+  const d = audio.duration || 0;
+  const txt = `${formatTime(c)} / ${formatTime(d)}`;
+  miniTime.textContent = txt;
+  fsTime.textContent = txt;
+  const pct = d ? (c/d)*100 : 0;
+  fsProgressFill.style.width = `${pct}%`;
+}
+
+/* seeking */
+fsProgress.addEventListener('click', (e) => {
+  const rect = fsProgress.getBoundingClientRect();
+  const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+  if (audio.duration) audio.currentTime = pct * audio.duration;
+});
+
+/* full screen open/close */
+function openFullscreen() {
+  if (!currentAlbumKey) return;
+  fsPlayer.style.display = 'flex';
+  fsPlayer.setAttribute('aria-hidden','false');
+  // ensure video plays
+  try { fsVideo.play().catch(()=>{}); } catch(e){}
+}
+function closeFullscreen() {
+  fsPlayer.style.display = 'none';
+  fsPlayer.setAttribute('aria-hidden','true');
+  try { fsVideo.pause(); } catch(e){}
+}
+
+/* keep play buttons synced */
+audio.addEventListener('play', () => { updatePlayButtons(); try{ fsVideo.play().catch(()=>{}); }catch(e){} });
+audio.addEventListener('pause', () => { updatePlayButtons(); try{ fsVideo.pause(); }catch(e){} });
+
+/* ---------- NAVIGATION ---------- */
+function openAlbum(id) {
+  document.querySelectorAll('.album-page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-'+id);
+  if (el) {
+    el.classList.add('active');
+    el.setAttribute('aria-hidden','false');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+}
+function closeAlbum() {
+  document.querySelectorAll('.album-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.album-page').forEach(p => p.setAttribute('aria-hidden','true'));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ---------- INITIALIZE UI STATE ---------- */
+document.getElementById('accent-radical').style.opacity = '0.5';
+document.getElementById('accent-live').style.opacity = '0.5';
+
+/* disable right click & copy (optional, per tvůj původní kód) */
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+
+/* keyboard shortcuts */
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+  if (e.key === 'ArrowRight') { playNext(); }
+  if (e.key === 'ArrowLeft') { playPrev(); }
+  if (e.key === 'Escape') { closeFullscreen(); }
+});
 </script>
 </body>
 </html>
