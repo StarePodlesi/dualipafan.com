@@ -346,6 +346,8 @@ function renderTracklist(albumKey, containerId) {
 }
 renderTracklist('radical', 'tracklist-radical');
 renderTracklist('live', 'tracklist-live');
+renderTracklist('future', 'tracklist-future');
+
 
 /* ---------- PLAYER (audio + background video) ---------- */
 let currentAlbumKey = null;
@@ -406,7 +408,7 @@ function startPlayback(albumKey, index) {
   // show mini player & populate info
   miniPlayer.style.display = 'flex';
   miniTitle.textContent = track.title;
-  miniCover.src = albumKey === 'radical' ? 'radical_optimism.jpg' : 'Live_from_the_Royal_Albert_Hall.jfif';
+  miniCover.src = albumKey === 'radical' ? 'radical_optimism.jpg' : 'Live_from_the_Royal_Albert_Hall.jfif' : 'futurenostalgia.jpg';
   fsCover.src = miniCover.src;
   fsTitle.textContent = track.title;
 
