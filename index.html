@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -195,9 +194,7 @@ Dua Lipa na pódiu vystupuje s živou kapelou, tanečníky a propracovanou chore
       <div>
         <h2>Future Nostalgia (2020)</h2>
         <div class="album-desc">
-          <p>„Live from the Royal Albert Hall“ je záznam jednoho z nejvýznamnějších živých vystoupení Dua Lipy v její kariéře. Koncert se odehrál v legendární londýnské síni Royal Albert Hall, známé svou vynikající akustikou, historickou prestiží a exkluzivní atmosférou. Album zachycuje autenticitu, energii a charismatické vystupování Dua Lipy, přičemž nabízí fanouškům možnost zažít její koncert téměř tak, jako by byli přímo na místě.
-
-Dua Lipa na pódiu vystupuje s živou kapelou, tanečníky a propracovanou choreografií, která kombinuje moderní vizuální efekty s dynamickým pohybem. Koncert propojuje energické taneční skladby s emotivními baladami, čímž ukazuje svou všestrannost a schopnost vytvořit komplexní hudební zážitek.</p>
+          <p>„Future Nostalgia“ představuje chytlavou kombinaci retro diska a moderní pop produkce. Album, které získalo velké mezinárodní uznání, je plné tanečních hitů a hymnicky laděných refrénů.</p>
         </div>
       </div>
     </div>
@@ -320,7 +317,7 @@ const albumsData = {
   ],
   future: [
     {num:1,title:"Future Nostalgia",mp3:"future-nostalgia.mp3",mp4:".mp4",duration:"3:05"},
-    {num:2,title:"Dont’ Start Now",mp3:"qwdqw.mp3",mp4:".mp4",duration:"3:08"},
+    {num:2,title:"Don’t Start Now",mp3:"qwdqw.mp3",mp4:".mp4",duration:"3:08"},
     {num:3,title:"Cool",mp3:"60m.mp3",mp4:"a82xvv.mp4",duration:"3:46"},
     {num:4,title:"Physical",mp3:"zeď.mp3",mp4:"a82xxp.mp4",duration:"3:37"},
     {num:5,title:"Levitating",mp3:"Co.mp3",mp4:"a82ywb.mp4",duration:"3:17"},
@@ -330,19 +327,23 @@ const albumsData = {
     {num:9,title:"Break My Heart",mp3:"Láska.mp3",mp4:"a82zlw.mp4",duration:"2:21"},
     {num:10,title:"Good In Bed",mp3:"Marie.mp3",mp4:"a82zxw.mp4",duration:"3:07"},
     {num:11,title:"Boys Will Be Boys",mp3:"Pro tebe.mp3",mp4:"a83003.mp4",duration:"4:04"}
+  ]
 };
 
 /* ---------- RENDER TRACKLISTS ---------- */
 function renderTracklist(albumKey, containerId) {
   const container = document.getElementById(containerId);
+  if (!container) return;
   container.innerHTML = "";
   const list = albumsData[albumKey] || [];
   list.forEach((t, idx) => {
     const div = document.createElement("div");
     div.className = "track fade-in";
     div.dataset.index = idx;
+    div.setAttribute('tabindex','0');
     div.innerHTML = `<div class="left"><div class="num">${t.num}</div><div class="title" title="${t.title}">${t.title}</div></div><div class="duration">${t.duration}</div>`;
     div.addEventListener("click", () => startPlayback(albumKey, idx));
+    div.addEventListener("keydown", (e) => { if (e.key === "Enter") startPlayback(albumKey, idx); });
     container.appendChild(div);
   });
 }
@@ -378,10 +379,18 @@ const fsCloseBtn = document.getElementById('fs-close');
 const fsProgress = document.getElementById('fs-progress');
 const fsProgressFill = document.getElementById('fs-progress-fill');
 
-/* color mapping */
+/* color mapping (added 'future') */
 const albumColor = {
   radical: { accent: '#40E0D0', panel: 'linear-gradient(90deg, rgba(64,224,208,0.95), rgba(4,62,58,0.95))' },
-  live: { accent: '#ff6b6b', panel: 'linear-gradient(90deg, rgba(255,107,107,0.95), rgba(30,10,10,0.95))' }
+  live: { accent: '#ff6b6b', panel: 'linear-gradient(90deg, rgba(255,107,107,0.95), rgba(30,10,10,0.95))' },
+  future: { accent: '#b300ff', panel: 'linear-gradient(90deg, rgba(179,0,255,0.95), rgba(20,4,30,0.95))' }
+};
+
+/* small utility: cover map */
+const albumCoverMap = {
+  radical: 'radical_optimism.jpg',
+  live: 'Live_from_the_Royal_Albert_Hall.jfif',
+  future: 'futurenostalgia.jpg'
 };
 
 function startPlayback(albumKey, index) {
@@ -393,59 +402,97 @@ function startPlayback(albumKey, index) {
   // set audio
   audio.src = track.mp3;
   audio.currentTime = 0;
-  audio.play().catch(()=>{}); // user gesture may be required
+  audio.play().catch(()=>{ /* autoplay may be blocked until gesture */ });
 
   // set video (looped) if exists
-  if (track.mp4) {
-    fsVideo.src = track.mp4;
-    fsVideo.loop = true; // loop video until audio ends
-    fsVideo.currentTime = 0;
-    fsVideo.play().catch(()=>{});
+  if (track.mp4 && track.mp4.trim() !== "" && track.mp4 !== ".mp4") {
+    try {
+      fsVideo.src = track.mp4;
+      fsVideo.loop = true; // loop video until audio ends
+      fsVideo.currentTime = 0;
+      fsVideo.play().catch(()=>{});
+    } catch (e) {
+      // don't break if video fails
+      try { fsVideo.pause(); } catch(e){}
+    }
   } else {
-    fsVideo.pause();
-    fsVideo.removeAttribute('src');
-    fsVideo.load();
+    // remove src cleanly
+    try {
+      fsVideo.pause();
+      if (fsVideo.getAttribute('src')) fsVideo.removeAttribute('src');
+      fsVideo.load();
+    } catch(e){}
   }
 
   // show mini player & populate info
-  miniPlayer.style.display = 'flex';
-  miniTitle.textContent = track.title;
-  miniCover.src = albumKey === 'radical' ? 'radical_optimism.jpg' : 'Live_from_the_Royal_Albert_Hall.jfif' : 'futurenostalgia.jpg';
-  fsCover.src = miniCover.src;
-  fsTitle.textContent = track.title;
+  if (miniPlayer) miniPlayer.style.display = 'flex';
+  if (miniTitle) miniTitle.textContent = track.title;
+  if (miniCover) miniCover.src = albumCoverMap[albumKey] || albumCoverMap['radical'];
+  if (fsCover) fsCover.src = miniCover.src;
+  if (fsTitle) fsTitle.textContent = track.title;
 
   // style (mini & fs)
   stylePlayersForAlbum(albumKey);
 
   updateTimeDisplays();
+
+  // highlight currently playing track in visible tracklist (visual feedback)
+  highlightCurrentTrack(albumKey, index);
 }
 
 function stylePlayersForAlbum(albumKey) {
-  const accent = albumColor[albumKey].accent;
-  const panel = albumColor[albumKey].panel;
+  const mapping = albumColor[albumKey] || albumColor['radical'];
+  const accent = mapping.accent;
+  const panel = mapping.panel;
   // mini player gradient
-  miniPlayer.style.background = `linear-gradient(90deg, ${accent}, rgba(10,10,10,0.28))`;
+  if (miniPlayer) miniPlayer.style.background = `linear-gradient(90deg, ${accent}, rgba(10,10,10,0.28))`;
   // fs panel
-  document.getElementById('fs-controls-panel').style.background = panel;
+  const fsPanelEl = document.getElementById('fs-controls-panel');
+  if (fsPanelEl) fsPanelEl.style.background = panel;
   // progress colors
-  fsProgressFill.style.background = accent;
-  // also change the accent bars on pages
-  document.getElementById('accent-radical').style.opacity = albumKey === 'radical' ? '1' : '0.35';
-  document.getElementById('accent-live').style.opacity = albumKey === 'live' ? '1' : '0.35';
+  if (fsProgressFill) fsProgressFill.style.background = accent;
+  // also change the accent bars on pages (safe-guard existence)
+  const ar = document.getElementById('accent-radical');
+  const al = document.getElementById('accent-live');
+  const af = document.getElementById('accent-future');
+  if (ar) ar.style.opacity = albumKey === 'radical' ? '1' : '0.35';
+  if (al) al.style.opacity = albumKey === 'live' ? '1' : '0.35';
+  if (af) af.style.opacity = albumKey === 'future' ? '1' : '0.35';
 }
 
-/* controls wiring */
-miniPlayBtn.addEventListener('click', togglePlay);
-fsPlayBtn.addEventListener('click', togglePlay);
-miniPrevBtn.addEventListener('click', playPrev);
-miniNextBtn.addEventListener('click', playNext);
-fsPrevBtn.addEventListener('click', playPrev);
-fsNextBtn.addEventListener('click', playNext);
-miniExpandBtn.addEventListener('click', openFullscreen);
-fsCloseBtn.addEventListener('click', closeFullscreen);
+/* highlight currently playing track */
+function highlightCurrentTrack(albumKey, index) {
+  // remove existing highlights
+  document.querySelectorAll('.track.playing').forEach(n => n.classList.remove('playing'));
+  // find container for the album page that is active or visible
+  const mapping = {
+    radical: 'tracklist-radical',
+    live: 'tracklist-live',
+    future: 'tracklist-future'
+  };
+  const container = document.getElementById(mapping[albumKey]);
+  if (!container) return;
+  const node = container.querySelector(`[data-index="${index}"]`);
+  if (node) {
+    node.classList.add('playing');
+    // small visual style for playing
+    node.style.background = 'linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))';
+  }
+}
+
+/* controls wiring (guard against missing elements) */
+if (miniPlayBtn) miniPlayBtn.addEventListener('click', togglePlay);
+if (fsPlayBtn) fsPlayBtn.addEventListener('click', togglePlay);
+if (miniPrevBtn) miniPrevBtn.addEventListener('click', playPrev);
+if (miniNextBtn) miniNextBtn.addEventListener('click', playNext);
+if (fsPrevBtn) fsPrevBtn.addEventListener('click', playPrev);
+if (fsNextBtn) fsNextBtn.addEventListener('click', playNext);
+if (miniExpandBtn) miniExpandBtn.addEventListener('click', openFullscreen);
+if (fsCloseBtn) fsCloseBtn.addEventListener('click', closeFullscreen);
 
 /* play / pause */
 function togglePlay() {
+  if (!audio.src) return; // nothing loaded
   if (audio.paused) {
     audio.play().catch(()=>{});
     try { fsVideo.play().catch(()=>{}); } catch(e){}
@@ -456,20 +503,22 @@ function togglePlay() {
   updatePlayButtons();
 }
 function updatePlayButtons() {
-  miniPlayBtn.textContent = audio.paused ? '▶' : '⏸';
-  fsPlayBtn.textContent = audio.paused ? '▶' : '⏸';
+  if (miniPlayBtn) miniPlayBtn.textContent = audio.paused ? '▶' : '⏸';
+  if (fsPlayBtn) fsPlayBtn.textContent = audio.paused ? '▶' : '⏸';
 }
 
 /* next/prev */
 function playNext() {
   if (!currentAlbumKey) return;
-  const list = albumsData[currentAlbumKey];
+  const list = albumsData[currentAlbumKey] || [];
+  if (!list.length) return;
   currentIndex = (currentIndex + 1) % list.length;
   startPlayback(currentAlbumKey, currentIndex);
 }
 function playPrev() {
   if (!currentAlbumKey) return;
-  const list = albumsData[currentAlbumKey];
+  const list = albumsData[currentAlbumKey] || [];
+  if (!list.length) return;
   currentIndex = (currentIndex - 1 + list.length) % list.length;
   startPlayback(currentAlbumKey, currentIndex);
 }
@@ -492,30 +541,32 @@ function updateTimeDisplays() {
   const c = audio.currentTime || 0;
   const d = audio.duration || 0;
   const txt = `${formatTime(c)} / ${formatTime(d)}`;
-  miniTime.textContent = txt;
-  fsTime.textContent = txt;
+  if (miniTime) miniTime.textContent = txt;
+  if (fsTime) fsTime.textContent = txt;
   const pct = d ? (c/d)*100 : 0;
-  fsProgressFill.style.width = `${pct}%`;
+  if (fsProgressFill) fsProgressFill.style.width = `${pct}%`;
 }
 
 /* seeking */
-fsProgress.addEventListener('click', (e) => {
-  const rect = fsProgress.getBoundingClientRect();
-  const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-  if (audio.duration) audio.currentTime = pct * audio.duration;
-});
+if (fsProgress) {
+  fsProgress.addEventListener('click', (e) => {
+    const rect = fsProgress.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    if (audio.duration) audio.currentTime = pct * audio.duration;
+  });
+}
 
 /* full screen open/close */
 function openFullscreen() {
   if (!currentAlbumKey) return;
-  fsPlayer.style.display = 'flex';
-  fsPlayer.setAttribute('aria-hidden','false');
+  if (fsPlayer) fsPlayer.style.display = 'flex';
+  if (fsPlayer) fsPlayer.setAttribute('aria-hidden','false');
   // ensure video plays
   try { fsVideo.play().catch(()=>{}); } catch(e){}
 }
 function closeFullscreen() {
-  fsPlayer.style.display = 'none';
-  fsPlayer.setAttribute('aria-hidden','true');
+  if (fsPlayer) fsPlayer.style.display = 'none';
+  if (fsPlayer) fsPlayer.setAttribute('aria-hidden','true');
   try { fsVideo.pause(); } catch(e){}
 }
 
@@ -540,8 +591,12 @@ function closeAlbum() {
 }
 
 /* ---------- INITIALIZE UI STATE ---------- */
-document.getElementById('accent-radical').style.opacity = '0.5';
-document.getElementById('accent-live').style.opacity = '0.5';
+const ar = document.getElementById('accent-radical');
+const al = document.getElementById('accent-live');
+const af = document.getElementById('accent-future');
+if (ar) ar.style.opacity = '0.5';
+if (al) al.style.opacity = '0.5';
+if (af) af.style.opacity = '0.5';
 
 /* disable right click & copy (optional, per tvůj původní kód) */
 document.addEventListener('contextmenu', e => e.preventDefault());
@@ -549,6 +604,10 @@ document.addEventListener('copy', e => e.preventDefault());
 
 /* keyboard shortcuts */
 document.addEventListener('keydown', (e) => {
+  // prevent accidental triggers when typing in inputs (none here, but safe)
+  const active = document.activeElement;
+  if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA')) return;
+
   if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
   if (e.key === 'ArrowRight') { playNext(); }
   if (e.key === 'ArrowLeft') { playPrev(); }
@@ -557,3 +616,5 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
+
