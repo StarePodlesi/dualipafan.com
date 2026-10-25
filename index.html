@@ -410,6 +410,8 @@ function renderTracklist(albumKey, containerId) {
 renderTracklist('radical', 'tracklist-radical');
 renderTracklist('live', 'tracklist-live');
 renderTracklist('future', 'tracklist-future');
+renderTracklist('mexico', 'tracklist-mexico');
+  
 
 
 /* ---------- PLAYER (audio + background video) ---------- */
@@ -443,14 +445,16 @@ const fsProgressFill = document.getElementById('fs-progress-fill');
 const albumColor = {
   radical: { accent: '#40E0D0', panel: 'linear-gradient(90deg, rgba(64,224,208,0.95), rgba(4,62,58,0.95))' },
   live: { accent: '#ff6b6b', panel: 'linear-gradient(90deg, rgba(255,107,107,0.95), rgba(30,10,10,0.95))' },
-  future: { accent: '#b300ff', panel: 'linear-gradient(90deg, rgba(179,0,255,0.95), rgba(20,4,30,0.95))' }
+  future: { accent: '#b300ff', panel: 'linear-gradient(90deg, rgba(179,0,255,0.95), rgba(20,4,30,0.95))' },
+  mexico: { accent: 'red', panel: 'linear-gradient(90deg, rgba(179,0,255,0.95), rgba(20,4,30,0.95))' }
 };
 
 /* small utility: cover map */
 const albumCoverMap = {
   radical: 'radical_optimism.jpg',
   live: 'Live_from_the_Royal_Albert_Hall.jfif',
-  future: 'futurenostalgia.jpg'
+  future: 'futurenostalgia.jpg',
+  mexico: 'live-from-mexico2.jpg'
 };
 
 function startPlayback(albumKey, index) {
@@ -515,9 +519,11 @@ function stylePlayersForAlbum(albumKey) {
   const ar = document.getElementById('accent-radical');
   const al = document.getElementById('accent-live');
   const af = document.getElementById('accent-future');
+  const af = document.getElementById('accent-mexico');
   if (ar) ar.style.opacity = albumKey === 'radical' ? '1' : '0.35';
   if (al) al.style.opacity = albumKey === 'live' ? '1' : '0.35';
   if (af) af.style.opacity = albumKey === 'future' ? '1' : '0.35';
+  if (af) af.style.opacity = albumKey === 'mexico' ? '1' : '0.35';
 }
 
 /* highlight currently playing track */
@@ -528,7 +534,8 @@ function highlightCurrentTrack(albumKey, index) {
   const mapping = {
     radical: 'tracklist-radical',
     live: 'tracklist-live',
-    future: 'tracklist-future'
+    future: 'tracklist-future',
+    mexico: 'tracklist-mexico'
   };
   const container = document.getElementById(mapping[albumKey]);
   if (!container) return;
@@ -654,8 +661,10 @@ function closeAlbum() {
 const ar = document.getElementById('accent-radical');
 const al = document.getElementById('accent-live');
 const af = document.getElementById('accent-future');
+const af = document.getElementById('accent-mexico');
 if (ar) ar.style.opacity = '0.5';
 if (al) al.style.opacity = '0.5';
+if (af) af.style.opacity = '0.5';
 if (af) af.style.opacity = '0.5';
 
 /* disable right click & copy (optional, per tvůj původní kód) */
