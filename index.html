@@ -161,6 +161,17 @@ V roce 2024 vydala třetí album “Radical Optimism”, inspirované britským 
 Mezi nejznámější písně patří “Don’t Start Now” (dynamický disco-pop hit), “Physical” (energetická taneční skladba s retro zvukem), “Levitating” (hravý, chytlavý singl s tanečním rytmem) a “Break My Heart” (kombinace popu a funky basů). Album je oceňováno za soudržný zvuk a moderní reinterpretaci retro stylu.</p>
       </div>
     </article>
+
+    <article class="card" onclick="openAlbum('future')" tabindex="0" onkeydown="if(event.key==='Enter') openAlbum('future')">
+      <img src="live-from-mexico.jpg" alt="Live From Mexico cover">
+      <div class="card-body">
+        <h3>Live From Mexico</h3>
+        <p>Future Nostalgia je druhé studiové album od Dua Lipy. Je tanečně-popové s výrazným disco a 80.letým nádechem. Kombinuje energické basy, synthy a chytlavé melodie, texty oslavují sebevědomí, nezávislost a radost ze života. Album působí jednotně hudebně i vizuálně, s futuristickým pojetím nostalgického popu.
+
+Mezi nejznámější písně patří “Don’t Start Now” (dynamický disco-pop hit), “Physical” (energetická taneční skladba s retro zvukem), “Levitating” (hravý, chytlavý singl s tanečním rytmem) a “Break My Heart” (kombinace popu a funky basů). Album je oceňováno za soudržný zvuk a moderní reinterpretaci retro stylu.</p>
+      </div>
+    </article>
+
   </section>
 
   <!-- RADICAL OPTIMISM PAGE -->
@@ -217,6 +228,26 @@ Texty oslavují sebejistotu, nezávislost a radost z pohybu i života. Mezi nejz
 
     <div class="album-accent" id="accent-future" style="background: linear-gradient(90deg,#b30000,#ff6b6b)"></div>
     <div id="tracklist-future" class="tracklist" aria-label="Tracklist Future Nostalgia"></div>
+  </section>
+
+
+  <!-- Live From Mexico -->
+  <section id="page-future" class="album-page" aria-hidden="true">
+    <button class="back" onclick="closeAlbum()">← Zpět</button>
+    <div class="album-header">
+      <img src="live-from-mexico.jpg" alt="Live From Mexico">
+      <div>
+        <h2>Live From Mexico (2026)</h2>
+        <div class="album-desc">
+          <p>Future Nostalgia je druhé studiové album britsko-albánské zpěvačky Dua Lipy, vydané v roce 2020. Představuje směs moderního popu, diska a funku s retro estetikou 80. let. Dua Lipa v něm spojuje nostalgii minulosti s futuristickým zvukem a sebevědomým stylem. Album se vyznačuje taneční energií, výraznými basovými linkami a chytlavými refrény.
+
+Texty oslavují sebejistotu, nezávislost a radost z pohybu i života. Mezi nejznámější písně patří “Don’t Start Now”, “Physical”, “Levitating”, “Break My Heart” a úvodní “Future Nostalgia”. Album získalo uznání kritiků i fanoušků a upevnilo postavení Dua Lipy jako jedné z nejvýraznějších popových umělkyň současnosti.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="album-accent" id="accent-future" style="background: linear-gradient(90deg,#b30000,#ff6b6b)"></div>
+    <div id="tracklist-mexico" class="tracklist" aria-label="Tracklist Live From Mexico"></div>
   </section>
 
   <!-- LONG BIO -->
@@ -334,6 +365,19 @@ const albumsData = {
   future: [
     {num:1,title:"Future Nostalgia",mp3:"future-nostalgia.mp3",mp4:".mp4",duration:"3:05"},
     {num:2,title:"Don’t Start Now",mp3:"dont-start-now.mp3",mp4:".mp4",duration:"3:02"},
+    {num:3,title:"Cool",mp3:"cool.mp3",mp4:"a82xvv.mp4",duration:"3:36"},
+    {num:4,title:"Physical",mp3:"zeď.mp3",mp4:"a82xxp.mp4",duration:"3:37"},
+    {num:5,title:"Levitating",mp3:"Co.mp3",mp4:"a82ywb.mp4",duration:"3:17"},
+    {num:6,title:"Pretty Please",mp3:"Francosisch.mp3",mp4:"a82yxv.mp4",duration:"3:21"},
+    {num:7,title:"Hallucinate",mp3:"Iluze.mp3",mp4:"a8t6wp.mp4",duration:"3:09"},
+    {num:8,title:"Love Again",mp3:"Padat.mp3",mp4:"a82zjs.mp4",duration:"3:42"},
+    {num:9,title:"Break My Heart",mp3:"Láska.mp3",mp4:"a82zlw.mp4",duration:"2:21"},
+    {num:10,title:"Good In Bed",mp3:"Marie.mp3",mp4:"a82zxw.mp4",duration:"3:07"},
+    {num:11,title:"Boys Will Be Boys",mp3:"Pro tebe.mp3",mp4:"a83003.mp4",duration:"4:04"}
+  ],
+  mexico: [
+    {num:1,title:"Training Season (Live From Mexico)",mp3:"training-season-live-from-mexico.mp3",mp4:".mp4",duration:"3:34"},
+    {num:2,title:"End Of An Era (Live From Mexico)",mp3:"end-of-an-era-live-from-mexico.mp3",mp4:".mp4",duration:"3:26"},
     {num:3,title:"Cool",mp3:"cool.mp3",mp4:"a82xvv.mp4",duration:"3:36"},
     {num:4,title:"Physical",mp3:"zeď.mp3",mp4:"a82xxp.mp4",duration:"3:37"},
     {num:5,title:"Levitating",mp3:"Co.mp3",mp4:"a82ywb.mp4",duration:"3:17"},
